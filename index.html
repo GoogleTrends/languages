@@ -1,0 +1,2331 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <title>Language data visualisation</title>
+        <style> 
+		
+	        /* CSS reset */ * {
+	            margin: 0;
+	            padding: 0;
+	            font-size: 13pt;
+	            font-weight: normal;
+	            width: 100%;
+	            list-style-type: none;
+	            vertical-align: middle;
+	            font-family: Helvetica, Arial, sans-serif;
+	            -webkit-touch-callout: none;
+	            -webkit-user-select: none;
+	            -khtml-user-select: none;
+	            -moz-user-select: none;
+	            -ms-user-select: none;
+	            user-select: none;
+	        }
+	        
+	        .landing_image {
+	            background: white;
+	            height: 260pt;
+	        }
+	        
+	        #global_controls > div {
+	            display: inline;
+	            width: auto;
+	        }
+	        
+	        #global_controls > div.share {
+	            float: right;
+	            width: auto;
+	        }
+	        
+	        #loading {
+	            background-image: url('preloader.gif');
+	            height: 40px;
+	            left: 50%;
+	            margin-left: -20px;
+	            margin-top: -20px;
+	            position: absolute;
+	            top: 50%;
+	            width: 40px;
+	        }
+	        
+	        h1, h2, h3, h4, a, p {
+	            color: #212121;
+	        }
+	        
+	        .map {
+	            height: 263pt;
+	            width: 100%;
+	        }
+	        
+	        .map svg {
+	            width: 100%;
+	        }
+	        
+	        .copyright {
+	            padding-top: 15pt;
+	        }
+	        
+	        .copyright p {
+	            text-align: end;
+	            padding: 10pt 0;
+	            font-size: 11pt;
+	            color: #888;
+	            width: 100%;
+	        }
+	        
+	        .copyright .logo {
+	            height: 40pt;
+	            padding-left: 2%;
+	            width: auto;
+	            float: left;
+	            margin-top: 0;
+	        }
+	        
+	        .back_links {
+	            color: #DA453D;
+	            text-decoration: underline;
+	        }
+	        
+	        .play_line, span.scrubber {
+	            position: relative;
+	            z-index: 1;
+	            width: 98%;
+	            margin-left: auto;
+	            margin-right: auto;
+	        }
+	        
+	        .copyright a {
+	            z-index: 2;
+	        }
+	        
+	        .copyright p {
+	            z-index: 1;
+	        }
+	        
+	        .dragger {
+	            z-index: 1000;
+	        }
+	        
+	        .play_line div {
+	            position: absolute;
+	            height: 2pt;
+	            margin-top: 15pt;
+	            background: #9E9E9E;
+	        }
+	        
+	        span.scrubber .dragger {
+	            position: absolute;
+	        }
+	        
+	        .play_pause, .timeline {
+	            display: inline-block;
+	            background: #212121;
+	        }
+	        
+	        .timeline span {
+	            display: inline-block;
+	            width: 12%;
+	            color: white;
+	        }
+	        
+	        .timeline span.scrubber {
+	            width: 76%;
+	            height: 30pt;
+	        }
+	        
+	        .play_pause {
+	            height: 44pt;
+	        }
+	        
+	        .play_pause {
+	            background: #DA453D;
+	        }
+	        
+	        .play {
+	            height: 100%;
+	            width: 100%;
+	        }
+	        
+	        .play div:after {
+	            width: 0;
+	            height: 0;
+	            border: 10pt solid transparent; 
+	            border-right: none;
+	            border-top-color: #DA453D;
+	            border-bottom-color: #DA453D;
+	            content: '';
+	            vertical-align: middle;
+	            display: inline-block;
+	            position: relative;
+	            top: -2pt;
+	            background: #fff;
+	            left: -2pt;
+	        }
+	        
+	        .play > div {
+	            margin-top: 14pt;
+	            margin-left: auto;
+	            margin-right: auto;
+	            width: 12%;
+	        }
+	        
+	        .pause {
+	            width: 100%;
+	        }
+	        
+	        .pause > div {
+	            border-left: 7pt solid #fff;
+	            border-right: 7pt solid #fff;
+	            margin-top: 14pt;
+	            margin-left: auto;
+	            margin-right: auto;
+	            height: 18pt;
+	            width: 12%;
+	        }
+	        
+	        .timeline span.scrubber .dragger {
+	            height: 30pt;
+	            width: 10pt;
+	            background: #DA453D;
+	        }
+	        
+	        .play_pause {
+	            width: 9%;
+	            margin-right: 1%;
+	        }
+	        
+	        .timeline {
+	            width: 90%;
+	            padding: 7pt 0;
+	        }
+	        
+	        .pick_one_from_list li a:after {
+	            width: 0;
+	            height: 0;
+	            border: 7pt solid transparent; /* 5 */
+	            border-right: none;
+	            border-top-color: #edecec;
+	            border-bottom-color: #edecec;
+	            content: '';
+	            vertical-align: middle;
+	            display: inline-block;
+	            position: relative;
+	            top: -2pt;
+	            background: #DA453D;
+	        }
+	        
+	        .pick_one_from_list li a {
+	            float: right;
+	            width: 7%;
+	        }
+	        
+	        .toggle {
+	            border-style: solid;
+	            background: #888;
+	            border-color: #888;
+	            border-width: 1pt;
+	            padding: 2pt 2pt 4pt 2pt;
+	            -moz-border-radius: 12pt;
+	            border-radius: 12pt;
+	        }
+	        
+	        .toggle .button {
+	            font-size: 9pt;
+	            color: #fff;
+	            background: #fff;
+	            -moz-border-radius: 12pt;
+	            border-radius: 12pt;
+	        }
+	        
+	        .toggle .selected {
+	            background: none;
+	        }
+	        
+	        .map_toggle {
+	            background: none;
+	            padding: 8pt 0;
+	            text-align: start;
+	        }
+	        
+	        .scrollable_content {
+	            height: 318pt;
+	            overflow: auto;
+	        }
+	        
+	        .animation {
+	            position: relative;
+	        }
+	        
+	        .whiteBox {
+	            position: absolute;
+	            width: 0%;
+	            height: 300pt;
+	            background: #fff;
+	        }
+	        
+	        .pick_one_from_list li {
+	            padding: 10pt 0;
+	            background: #edecec;
+	            color: #DA453D;
+	            margin: 1pt 0;
+	            font-weight: bold;
+	        }
+	        
+	        #hover {
+	            position: absolute;
+	            padding: 2pt 5pt;
+	            background: #212121;
+	            color: #fff;
+	            z-index: 9999999999999999999;
+	            top: 100px;
+	            left: -1000px;
+	            width: auto;
+	        }
+	        
+	        .pick_one_from_list li:hover, .back_links:hover, .play_pause:hover, .copyright > a > img:hover {
+	            cursor: pointer;
+	            opacity: 0.8;
+	        }
+	        
+	        .timeline span:first-child {
+	            text-align: right;
+	        }
+	        
+	        h2 {
+	            margin: 14pt 0;
+	        }
+	        
+	        h3 {
+	            margin-top: 14pt;
+	        }
+	        
+	        h3, h4 {
+	            display: inline;
+	        }
+	        
+	        .page_one > div > span {
+	            display: block;
+	            margin: 7pt 0;
+	        }
+	        
+	        .option p {
+	            padding-bottom: 9pt;
+	            font-size: 14pt;
+	        }
+	        
+	        .half {
+	            width: 50%;
+	            display: inline-block;
+	        }
+	        
+	        .hide {
+	            display: none;
+	        }
+	        
+	        .option {
+	            background: #edecec;
+	            margin-left: auto;
+	            margin-right: auto;
+	            width: 70%;
+	        }
+	        
+	        #graphics > div {
+	            vertical-align: top;
+	        }
+	        
+	        .call_to_action, h4 {
+	            font-size: 20pt;
+	            font-weight: normal;
+	        }
+	        
+	        .share img {
+	            width: 22pt;
+	            margin: 0 5pt;
+	            vertical-align: middle;
+	        }
+	        
+	        .share * {
+	            vertical-align: middle;
+	        }
+	        
+	        #global_controls div span {
+	            display: inline;
+	            vertical-align: middle;
+	        }
+	        
+	        .button {
+	            padding: 3pt 10pt;
+	            background: #DA453D;
+	            color: #fff;
+	            text-align: center;
+	            vertical-align: middle;
+	            text-transform: uppercase;
+	        }
+	        
+	        .button:hover, .share > span > a:hover {
+	            cursor: pointer;
+	            opacity: 0.8;
+	        }
+	        
+	        .selected {
+	            background: #212121;
+	        }
+	        
+	        div.page_one > div {
+	            display: inline-block;
+	            width: 4%;
+	            margin-left: auto;
+	            margin-right: auto;
+	            text-align: center;
+	        }
+	        
+	        h1, div.page_one > p {
+	            text-align: center;
+	        }
+	        
+	        div.page_one > p {
+	            padding: 10pt 0;
+	            padding-bottom: 30pt;
+	        }
+	        
+	        h1 {
+	            padding-top: 20pt;
+	        }
+	        
+	        div.page_one > div > .button {
+	            padding: 3pt 0;
+	            margin: 0 15%;
+	            width: 70%;
+	            background-color: #333;
+	        }
+	        
+	        div.page_one > div.option {
+	            width: 38%;
+	            margin: 0 5%;
+	        }
+	        
+	        div.page_one > .bottom {
+	            width: 100%;
+	            height: 0pt;
+	        }
+	        
+	        /* controls for selection switch */
+	        #global_controls div span, .navigation ol li {
+	            display: inline;
+	        }
+	        
+	        #global_controls {
+	            padding: 15pt 0;
+	            border-top: 2pt solid #edecec;
+	        }
+	        
+	        .navigation {
+	            padding: 8pt 0;
+	            border-top: 2pt solid #edecec;
+	            border-bottom: 2pt solid #edecec;
+	        }
+	        
+	        body {
+	            background: #fff;
+	        }
+	        
+	        #content {
+	            background: white;
+	            width: 765pt;
+	            margin-left: auto;
+	            margin-right: auto;
+	        }
+	        
+	        .option *, .copyright * {
+	            position: absolute;
+	        }
+	        
+	        .copyright * {
+	            margin-top: 410pt;
+	        }
+	        
+	        .option * {
+	            margin-left: auto;
+	            margin-right: auto;
+	            text-align: center;
+	        }
+	        
+	        div.page_one > div {
+	            padding-left: auto;
+	            padding-right: auto;
+	            text-align: start;
+	        }
+	        
+	        .copyright {
+	            position: relative;
+	        }
+	        
+	        .option {
+	            position: relative;
+	            height: 260pt;
+	        }
+	        
+	        div.option > p {
+	            margin-top: 70pt;
+	        }
+	        
+	        div.option > div.button {
+	            margin-top: 110pt;
+	        }
+	        
+	        div.page_three {
+	            padding-top: 10pt;
+	        }
+            
+			/* switching from mobile to desktop*/ 
+			@media (min-width: 0) {
+             
+                 .option, .landing_image {
+                     height: 100pt;
+                 }
+                 
+                 div.option > p {
+                     margin-top: 20pt;
+                 }
+                 
+                 div.option > div.button {
+                     margin-top: 60pt;
+                 }
+                 
+                 #content {
+                     width: 100%;
+                 }
+                 
+                 .half {
+                     width: 100%;
+                 }
+                 
+                 div.page_one > div {
+                     width: 100%;
+                 }
+                 
+                 div.page_one > div.option {
+                     width: 90%;
+                 }
+                 
+                 .play_pause {
+                     width: 16%;
+                 }
+                 
+                 .timeline {
+                     width: 83%;
+                 }
+                 
+                 .timeline span {
+                     width: 14%;
+                 }
+                 
+                 .timeline span.scrubber {
+                     width: 72%;
+                 }
+                 
+                 .timeline span.scrubber .dragger {
+                     width: 12pt;
+                 }
+                 
+                 div.page_one > .bottom {
+                     height: 0;
+                 }			
+					
+								
+             }
+			 
+			@media (min-width: 470pt) {
+             
+                .play_pause {
+                    width: 9%;
+                }
+                
+                .timeline {
+                    width: 90%;
+                }
+                
+                .timeline span {
+                    width: 11%;
+                }
+                
+                .timeline span.scrubber {
+                    width: 78%;
+                }
+                
+                .timeline span.scrubber .dragger {
+                    width: 8pt;
+                }	 
+			}
+			 
+			@media (min-width: 640pt) {
+             	
+                .option, .landing_image {
+                    height: 260pt;
+                }
+                
+                div.option > p {
+                    margin-top: 80pt;
+                }
+                
+                div.option > div.button {
+                    margin-top: 120pt;
+                }
+                
+                div.page_one > .bottom {
+                    height: 0pt;
+                }
+                
+                .option > img {
+                    height: auto;
+                    width: 100%;
+                }
+                
+                div.page_one > div {
+                    width: 0;
+                }
+                
+                div.page_one > div.option {
+                    width: 40%;
+                }
+                
+                .half {
+                    width: 48%;
+                    margin: 0 1%;
+                }
+			}
+			 
+			@media (min-width: 765pt) {
+                #content {
+                    width: 765pt;
+                }
+			}
+
+        </style>
+    </head>
+    <body>
+		<div id='hover' class='hide'></div>
+        <div id="content">
+        	<div id="loading">
+        	</div>
+            <div id="global_controls" class="hide">
+                <div>
+                    <span>View:</span>
+                    <span class='toggle'>
+	                    <span class='button selected'>1</span>
+	                    <span class='button'>2</span>
+					</span>
+                </div>
+                <div class="share">
+                    <span>Share:</span>
+                    <span><a class='facebook' href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank"><img src="facebook.png" alt='Facebook' ></a></span>
+                    <span><a class='twitter' href="https://twitter.com/intent/tweet?text=text Here&url=" target="_blank"><img src="twitter.png" alt='Twitter' ></a></span>
+                    <span><a class='google' href="https://plus.google.com/share?url=" target="_blank"><img src="google.png" alt='Google' ></a></span>
+                </div>
+            </div>
+			
+			<div class='copyright hide'>
+				<a href='https://www.google.com/trends/'><img class='logo' src='GoogleTrendsLogo.png' width='140pt' height='40pt'></a>
+				<p>©2015 Google</p>
+			</div>			
+            <div id="graphics" class="hide"><!--
+                --><div id='graphic_one' class="">
+                    <div class="navigation">
+                        <ol>
+                            <li>
+                                <a>Start</a>
+                            </li>
+                            <li>
+                            </li>
+                            <li>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="pages">
+                    	<div class='animation'>
+                    		<div class='whiteBox'>
+                    		</div>
+                    	</div>
+                        <!-- LANDING PAGE -->
+                        <div class="page_one hide">
+                            <h1 class="call_to_action">Trending languages</h1>
+							<p>Explore 137 languages from 2004 to 2015</p><!--
+                           
+						    --><div class="option city">
+						    	<div id='CitiesOne' class="landing_image"></div>
+                                <p>
+                                    All the languages<br>in a major city
+                                </p>
+                                <div class="button">
+                                    Cities &raquo
+                                </div>
+                            </div><!--
+							--><div>
+                            </div><!--
+							--><div class="option city">
+						    	<div id='LanguagesOne' class="landing_image"></div>
+                                <p>
+                                    One language<br>across ten cities
+                                </p>
+                                <div class="button">
+                                    Languages &raquo
+                                </div>
+                            </div><!--
+							--><div class="bottom"></div>							
+                        	</div>
+                        <!-- .page_one end -->
+						<!-- LIST -->
+                        <div class="page_two hide">
+                            <h2 class="call_to_action"></h2>
+                            <div class="scrollable_content">
+                                <ul class="pick_one_from_list">
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- .page_two end -->
+						<!-- MAP -->
+                        <div class="page_three hide">
+                            <h3 class="call_to_action"></h3>
+                            <h4>2004</h4>							
+                            <div class="map_toggle">
+                                <span>Show biggest:</span>
+                                <span class='toggle'>
+                                	<span class='button selected'>Off</span>
+									<span class='button'>On</span>
+								</span>
+                            </div>				
+                            <div id='map_one' class="map">
+                            </div>
+							<div class="scrollbar"><!--
+								--><div class="play_pause">
+									<div class="play">
+										<div></div>
+									</div>
+									<div class="pause hide">
+										<div></div>
+									</div>								
+								</div><!--
+								--><div class="timeline"><!--
+									--><span class="">
+										2004
+									</span><!--						
+									--><span class="scrubber">
+										<div class="play_line"><div ></div></div>
+										<span class="dragger">
+										</span>									
+									</span><!--
+									--><span class="">
+										2015
+									</span><!--										
+								--></div><!--
+                            --></div>
+                        </div>
+                        <!-- .page_three end -->
+                    </div>
+                    <!-- .pages end -->
+                </div><!--
+                --><!-- #graphic_one end --><!--
+                --><div id='graphic_two' class="hide">
+                    <div class="navigation">
+                        <ol>
+                            <li>
+                                <a>Start</a>
+                            </li>
+                            <li>
+                            </li>
+                            <li>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="pages">
+                    	<div class='animation'>
+                    		<div class='whiteBox'>
+                    		</div>
+                    	</div>						
+                        <!-- LANDING PAGE -->
+                        <div class="page_one hide">
+                            <h1 class="call_to_action">Trending languages</h1>
+							<p>Explore 137 languages from 2004 to 2015</p><!--
+						    --><div class="option city">
+						    	<div id='CitiesTwo' class="landing_image"></div>
+                                <p>
+                                    All the languages<br>in a major city
+                                </p>
+                                <div class="button">
+                                    Cities &raquo
+                                </div>
+                            </div><!--
+							--><div>
+                            </div><!--
+							--><div class="option city">
+						    	<div id='LanguagesTwo' class="landing_image"></div>
+                                <p>
+                                    One language<br>across ten cities
+                                </p>
+                                <div class="button">
+                                    Languages &raquo
+                                </div>
+                            </div><!--
+							--><div class="bottom"></div>
+						</div>
+                        <!-- .page_one end -->
+						<!-- LIST -->
+                        <div class="page_two hide">
+                            <h2 class="call_to_action"></h2>
+                            <div class="scrollable_content">
+                                <ul class="pick_one_from_list">
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- .page_two end -->
+						<!-- MAP -->
+                        <div class="page_three hide">		
+                            <h3 class="call_to_action"></h3>
+                            <h4>2004</h4>
+                            <div class="map_toggle">
+                                <span>Show biggest:</span>
+                                <span class='toggle'>
+                                	<span class='button selected'>Off</span>
+									<span class='button'>On</span>
+								</span>
+                            </div>								
+                            <div id='map_two' class="map">
+                            </div>
+                            <div class="scrollbar"><!--
+								--><div class="play_pause">
+									<div class="play">
+										<div></div>
+									</div>
+									<div class="pause hide">
+										<div></div>
+									</div>								
+								</div><!--
+								--><div class="timeline"><!--
+									--><span class="">
+										2004
+									</span><!--						
+									--><span class="scrubber">
+										<div class="play_line"><div ></div></div>
+										<span class="dragger">
+										</span>									
+									</span><!--
+									--><span class="">
+										2015
+									</span><!--										
+								--></div><!--
+                            --></div>
+                        </div>
+                        <!-- .page_three end -->
+                    </div>
+                    <!-- .pages end -->
+                </div>
+                <!-- #graphic_two end -->
+            </div>
+            <!-- #graphics end -->
+            <div id='scrollbarMaster' class="scrollbar hide"><!--
+                --><div class="play_pause">
+                    <div class="play">
+                        <div>
+                        </div>
+                    </div>
+                    <div class="pause hide">
+                        <div>
+                        </div>
+                    </div>
+                </div><!--
+                --><div class="timeline"><!--
+                    --><span class=""> 2004</span><!--
+                    --><span class="scrubber">
+                        <div class="play_line">
+                            <div>
+                            </div>
+                        </div>
+                        <span class="dragger"></span></span><!--
+                    --><span class=""> 2015</span><!--
+                --></div><!--
+            --></div>
+        </div>
+        <script type="text/javascript" src="jquery-2.0.0.min.js">
+        </script>
+		<script type='text/javascript' src='raphael.js'>
+		</script>	
+        <script type="text/javascript" src="data.js">
+        </script>		
+        <script>
+            
+            $(document).ready(function(){
+				
+				/*********************************************
+				 * 
+				 * 
+				 *					MODEL 
+				 * 
+				 * 
+				 *********************************************/						
+				
+				var MODEL = {
+					graphic_one:{
+						showing: true,
+						page:0,
+						dataSet:'Cities',
+						dataPoint:'London',
+						showBiggest: false,
+						year:2004
+					},
+					graphic_two:{
+						showing: false,
+						page:0,
+						dataSet:'Languages',
+						dataPoint:'English',
+						showBiggest: false,
+						year:2004
+					}					
+				};
+				
+				
+				console.log(MODEL);
+				
+				
+				/*********************************************
+				 * 
+				 *					Globals 
+				 * 
+				 *********************************************/					
+				
+				
+				var $facebook = $('.facebook');
+				var $twitter = $('.twitter');
+				var $google = $('.google');
+				
+				var $facebookURL = $facebook.attr("href");
+				var $twitterURL = $twitter.attr("href");
+				var $googleURL = $google.attr("href");
+								
+				
+				//Taken Assamese, Lozi, and Hawaiian out becuase they have no data
+				
+				var cityAbbreviation=[];cityAbbreviation["SaoPaulo"]="SP";cityAbbreviation["Delhi"]="DEL";cityAbbreviation["Shanghai"]="SHA";cityAbbreviation["Madrid"]="MAD";cityAbbreviation["Toronto"]="TOR";cityAbbreviation["London"]="LON";cityAbbreviation["Tokyo"]="TOK";cityAbbreviation["NewYork"]="NYC";cityAbbreviation["Paris"]="PAR";cityAbbreviation["Berlin"]="BER";
+				var cityFullNames=[];cityFullNames["SP"]="Sao Paulo";cityFullNames["DEL"]="Delhi";cityFullNames["SHA"]="Shanghai";cityFullNames["MAD"]="Madrid";cityFullNames["TOR"]="Toronto";cityFullNames["LON"]="London";cityFullNames["TOK"]="Tokyo";cityFullNames["NYC"]="New York";cityFullNames["PAR"]="Paris";cityFullNames["BER"]="Berlin";
+				var a=[{"label":"German","lat":51.165691,"lon":10.451526},{"label":"English","lat":52.355518,"lon":-1.17432},{"label":"French","lat":46.227638,"lon":2.213749},{"label":"Spanish","lat":40.463667,"lon":-3.74922},{"label":"Chinese","lat":35.86166,"lon":104.195397},{"label":"Polish","lat":51.919438,"lon":19.145136},{"label":"Italian","lat":41.87194,"lon":12.56738},{"label":"Russian","lat":61.52401,"lon":105.318756},{"label":"Dutch","lat":52.132633,"lon":5.291266},{"label":"Japanese","lat":36.204824,"lon":138.252924},{"label":"Turkish","lat":38.963745,"lon":35.243322},{"label":"Portuguese","lat":39.399872,"lon":-8.224454},{"label":"Swedish","lat":60.128161,"lon":18.643501},{"label":"Korean","lat":38.172154,"lon":126.96904},{"label":"Danish","lat":56.26392,"lon":9.501785},{"label":"Hungarian","lat":47.162494,"lon":19.503304},{"label":"Arabic","lat":23.424076,"lon":53.847818},{"label":"Finnish","lat":61.92411,"lon":25.748151},{"label":"Romanian","lat":45.943161,"lon":24.96676},{"label":"Greek","lat":39.074208,"lon":21.824312},{"label":"Hebrew","lat":31.046051,"lon":34.851612},{"label":"Norwegian","lat":60.472024,"lon":8.468946},{"label":"Thai","lat":15.870032,"lon":100.992541},{"label":"Bulgarian","lat":42.733883,"lon":25.48583},{"label":"Lithuanian","lat":55.169438,"lon":23.881275},{"label":"Vietnamese","lat":14.058324,"lon":108.277199},{"label":"Persian","lat":32.427908,"lon":53.688046},{"label":"Slovak","lat":48.669026,"lon":19.699024},{"label":"Croatian","lat":45.1,"lon":15.2},{"label":"Czech","lat":49.817492,"lon":15.472962},{"label":"Latvian","lat":56.879635,"lon":24.603189},{"label":"Slovenian","lat":46.151241,"lon":14.995463},{"label":"Catalan","lat":41.591159,"lon":1.520862},{"label":"Ukrainian","lat":48.379433,"lon":31.16558},{"label":"Estonian","lat":58.595272,"lon":25.013607},{"label":"Indonesian","lat":-0.789275,"lon":113.921327},{"label":"Albanian","lat":41.153332,"lon":20.168331},{"label":"Esperanto","lat":51.919438,"lon":19.145136},{"label":"Latin","lat":41.87194,"lon":12.56738},{"label":"Bosnian","lat":43.915886,"lon":17.679076},{"label":"Faroese","lat":61.892635,"lon":-6.911806},{"label":"Icelandic","lat":64.963051,"lon":-19.020835},{"label":"Afrikaans","lat":-30.559482,"lon":22.937506},{"label":"Basque","lat":40.463667,"lon":-3.74922},{"label":"Serbian","lat":44.016521,"lon":21.005859},{"label":"Maltese","lat":35.937496,"lon":14.375416},{"label":"Telugu","lat":20.593684,"lon":78.96288},{"label":"Hindi","lat":-16.578193,"lon":179.414413},{"label":"Macedonian","lat":41.608635,"lon":21.745275},{"label":"Welsh","lat":52.130661,"lon":-3.783712},{"label":"Belarusian","lat":53.709807,"lon":27.953389},{"label":"Amharic","lat":9.145,"lon":40.489673},{"label":"Swahili","lat":-6.369028,"lon":34.88882},{"label":"Georgian","lat":42.315407,"lon":43.356892},{"label":"Uzbek","lat":41.377491,"lon":64.585262},{"label":"Tagalog","lat":12.879721,"lon":121.774017},{"label":"Tamil","lat":7.873054,"lon":80.771797},{"label":"Galician","lat":40.463667,"lon":-3.74922},{"label":"Interlingua","lat":-16.290154,"lon":-63.588653},{"label":"Azerbaijani","lat":40.143105,"lon":47.576927},{"label":"Guarani","lat":-14.235004,"lon":-51.92528},{"label":"Malayalam","lat":20.593684,"lon":78.96288},{"label":"Marathi","lat":20.593684,"lon":78.96288},{"label":"Punjabi","lat":30.375321,"lon":69.345116},{"label":"Serbo-Croatian","lat":45.1,"lon":15.2},{"label":"Norwegian-N","lat":60.472024,"lon":8.468946},{"label":"Malay","lat":-0.789275,"lon":113.921327},{"label":"Irish","lat":54.787715,"lon":-6.492315},{"label":"Armenian","lat":40.069099,"lon":45.038189},{"label":"Kurdish","lat":33.223191,"lon":43.679291},{"label":"Somali","lat":5.152149,"lon":46.199616},{"label":"Scots-Gaelic","lat":56.490671,"lon":-4.202646},{"label":"Mongolian","lat":29.646923,"lon":91.117212},{"label":"Pashto","lat":32.427908,"lon":53.688046},{"label":"Occitan","lat":41.591159,"lon":1.520862},{"label":"Laothian","lat":19.85627,"lon":102.495496},{"label":"Rhaeto-Romance","lat":46.818188,"lon":8.227512},{"label":"Breton","lat":52.355518,"lon":-1.17432},{"label":"Khmer","lat":12.565679,"lon":104.990963},{"label":"Xhosa","lat":-30.559482,"lon":22.937506},{"label":"Tonga","lat":-21.178986,"lon":-175.198242},{"label":"Tajik","lat":38.861034,"lon":71.276093},{"label":"Uighur","lat":38.963745,"lon":35.243322},{"label":"Quechua","lat":-38.416097,"lon":-63.616672},{"label":"Lingala","lat":-0.228021,"lon":15.827659},{"label":"Urdu","lat":30.375321,"lon":69.345116},{"label":"Twi","lat":7.946527,"lon":-1.023194},{"label":"Corsican","lat":42.039604,"lon":9.012893},{"label":"Yoruba","lat":9.081999,"lon":8.675277},{"label":"Tatar","lat":61.52401,"lon":105.318756},{"label":"Gujarati","lat":20.593684,"lon":78.96288},{"label":"Tigrinya","lat":9.145,"lon":40.489673},{"label":"Sinhalese","lat":7.873054,"lon":80.771797},{"label":"Bengali","lat":20.593684,"lon":78.96288},{"label":"Yiddish","lat":31.046051,"lon":34.851612},{"label":"Nepali","lat":28.394857,"lon":84.124008},{"label":"Javanese","lat":-7.614529,"lon":110.712246},{"label":"Ganda","lat":1.373333,"lon":32.290275},{"label":"Frisian","lat":52.132633,"lon":5.291266},{"label":"Kannada","lat":20.593684,"lon":78.96288},{"label":"Moldavian","lat":47.411631,"lon":28.369885},{"label":"Kazakh","lat":48.019573,"lon":66.923684},{"label":"Wolof","lat":14.497401,"lon":-14.452362},{"label":"Portuguese-B","lat":39.399872,"lon":-8.224454},{"label":"Portuguese-P","lat":39.399872,"lon":-8.224454},{"label":"Chineset","lat":35.86166,"lon":104.195397},{"label":"Montenegrin","lat":45.1,"lon":15.2},{"label":"Maori","lat":-40.900557,"lon":174.885971},{"label":"Zulu","lat":-30.559482,"lon":22.937506},{"label":"Hausa","lat":15.454166,"lon":18.732207},{"label":"Tswana","lat":-22.328474,"lon":24.684866},{"label":"Pedi","lat":-30.559482,"lon":22.937506},{"label":"Akan","lat":7.539989,"lon":-5.54708},{"label":"Cebuano","lat":12.879721,"lon":121.774017},{"label":"Sanskrit","lat":20.593684,"lon":78.96288},{"label":"Ewe","lat":8.619543,"lon":0.824782},{"label":"Bihari","lat":20.593684,"lon":78.96288},{"label":"Oriya","lat":20.593684,"lon":78.96288},{"label":"Interlingue","lat":51.165691,"lon":10.451526},{"label":"Kyrgyz","lat":41.20438,"lon":74.766098},{"label":"Shona","lat":-19.015438,"lon":29.154857},{"label":"Turkmen","lat":38.969719,"lon":59.556278},{"label":"Igbo","lat":9.081999,"lon":8.675277},{"label":"Sundanese","lat":-7.614529,"lon":110.712246},{"label":"Malagasy","lat":-18.766947,"lon":46.869107},{"label":"Oromo","lat":9.145,"lon":40.489673},{"label":"Sesotho","lat":-30.559482,"lon":22.937506},{"label":"Rundi","lat":-3.373056,"lon":29.918886},{"label":"Burmese","lat":21.913965,"lon":95.956223},{"label":"Nyanja","lat":-22.328474,"lon":24.684866},{"label":"Mauritian-Creole","lat":-20.348404,"lon":57.552152},{"label":"Haitian-Creole","lat":18.971187,"lon":-72.285215},{"label":"Seselwa-Creole-French","lat":-4.679574,"lon":55.491977},{"label":"Sindhi","lat":30.375321,"lon":69.345116},{"label":"Ga","lat":7.946527,"lon":-1.023194},{"label":"Krio","lat":8.460555,"lon":-11.779889},{"label":"Kinyarwanda","lat":-1.940278,"lon":29.873888}];
+				var b=[{"label":"Sao Paulo","lat":-23.550520,"lon":-46.633309},{"label":"Delhi","lat":28.613939,"lon":77.209021},{"label":"Shanghai","lat":31.230416,"lon":121.473701},{"label":"Madrid","lat":40.416775,"lon":-3.703790},{"label":"Toronto","lat":43.653226,"lon":-79.383184},{"label":"London","lat":51.507351,"lon":-0.127758},{"label":"Tokyo","lat":35.689487,"lon":139.691706},{"label":"New York","lat":40.712784,"lon":-74.005941},{"label":"Paris","lat":48.856614,"lon":2.352222},{"label":"Berlin","lat":52.520007,"lon":13.404954}];								
+					
+            	var themeColour = '#DA453D'
+								
+            	$('head').append("<style>.button , .timeline span.scrubber .dragger , .play_pause , .pick_one_from_list li a:after  {background:" + themeColour + ";} .pick_one_from_list li , .back_links  {color:" + themeColour + ";}.play div:after { border-top-color: " + themeColour  + ";} .selected {  background: none; color:#212121; } </style>");
+
+							
+                var mouseX, mouseY;
+                document.addEventListener('mousemove', function(e){ 
+                    mouseX = e.clientX || e.pageX; 
+                    mouseY = e.clientY || e.pageY; 
+                }, false);
+                document.addEventListener('touchmove', function(e){ 
+                    mouseX = e.clientX || e.pageX; 
+                    mouseY = e.clientY || e.pageY; 
+                }, false);
+				
+				
+				var years = ["2015","2014","2013","2012","2011","2010","2009","2008","2007","2006","2005","2004"];
+
+				var intervals = [];
+				
+				var maps = [] ;
+				
+				var $hover = $('#hover');
+				var mousePadding = 10;
+				
+				/*********************************************
+				 * 				
+				 *		force responsive width animations
+				 * 
+				 *********************************************/
+								
+                window.onresize = function() {
+					reset_scrubber();
+					updateMapSizes();
+					updateLandingImageSizes();
+					footerVIEW();
+                };				
+				
+				
+				/*********************************************
+				 * 
+				 * 
+				 *						SHARE 
+				 * 
+				 * 
+				 *********************************************/				
+				
+				
+                $facebook.click(function(){
+                    $facebook.attr("href", $facebookURL + (window.location.href).replace('#','%23'));
+                });
+                $twitter.click(function(){
+                    $twitter.attr("href", $twitterURL + (window.location.href).replace('#','%23'));
+                });
+                $google.click(function(){
+                    $google.attr("href", $googleURL + (window.location.href).replace('#','%23'));
+                });				
+				
+				
+				
+				/*********************************************
+				 * 
+				 * 
+				 *					START PAGE 
+				 * 
+				 * 
+				 *********************************************/				
+				
+				
+				
+				// make canvas
+				$('.landing_image').each(function(index) {
+					var $canvas = $(this);
+					var id = ($canvas.attr('id')).toString();
+					var canvasWidth = $canvas.width();
+					var canvasHeight = $canvas.height();
+					var paper = Raphael(id, canvasWidth, canvasHeight);
+					maps[id] = {};
+					maps[id].paper = paper;	
+					
+					// bubbles set up
+					
+					maps[id].circles = [
+						
+						maps[id].paper.circle( 0, 0, 0).attr({"fill": '#ee2626' }),
+						maps[id].paper.circle( 0, 0, 0).attr({"fill": '#fcc23b' }),
+						maps[id].paper.circle( 0, 0, 0).attr({"fill": '#457df5' }),
+						maps[id].paper.circle( 0, 0, 0).attr({"fill": '#00a45e' })
+						
+					];
+					
+                    for(var i = 0 ; i < maps[id].circles.length ; i++ ){ 
+                    	maps[id].circles[i].attr({"stroke-width": 0 , 'opacity': 0.35}); 
+                    } 
+					
+					if (id.replace('Cities','').length == id.length){
+					
+						for(var i = 0 ; i < maps[id].circles.length ; i++ ){
+							maps[id].circles[i].attr({'fill':'#ee2626'});							
+						}						
+					
+					}
+										
+									
+				});
+				
+				function updateLandingImageSizes(){
+					
+					$('.landing_image').each(function(index) {
+						var $canvas = $(this);
+						updateLandingImageSize($canvas);
+					});	
+				}
+				
+				function smallLandingImageSizes(graphicDOM){
+					
+					graphicDOM.find('.landing_image').each(function(index) {
+						var $canvas = $(this);
+
+						var id = ($canvas.attr('id')).toString();
+						
+						for(var i = 0 ; i < maps[id].circles.length ; i++ ){
+							maps[id].circles[i].attr({'r':0});							
+						}							
+												
+					});	
+				}
+				
+				function updateLandingImageSize($canvas){
+					
+						if (!$canvas.parent().hasClass('hide')) {
+						
+							var id = ($canvas.attr('id')).toString();
+							var canvasWidth = $canvas.width();
+							var canvasHeight = $canvas.height();
+							maps[id].paper.setSize('100%', '100%');
+							
+							var radius = canvasWidth;
+							
+							if (radius > canvasHeight) {
+								radius = canvasHeight;
+							}
+							
+							
+							// bubbles resize
+							
+							if (maps[id].circles[1].attr("fill") == '#fcc23b') {
+							radius = radius / 3.5;
+							maps[id].circles[0].attr({'cx':(canvasWidth / 2) - (radius / 1.7), 'cy':(canvasHeight / 2) + (radius / 1.7)}); // BottomLeft
+							maps[id].circles[1].attr({'cx':(canvasWidth / 2) + (radius / 1.7), 'cy':(canvasHeight / 2) + (radius / 1.7)}); // BR
+							maps[id].circles[2].attr({'cx':(canvasWidth / 2) - (radius / 1.7), 'cy':(canvasHeight / 2) - (radius / 1.7)}); // TL
+							maps[id].circles[3].attr({'cx':(canvasWidth / 2) + (radius / 1.7), 'cy':(canvasHeight / 2) - (radius / 1.7)}); // TR
+							
+							} else {
+							radius = radius / 4;
+							maps[id].circles[0].attr({'cx':(canvasWidth / 2), 'cy':(canvasHeight / 2) - radius }); // Top
+							maps[id].circles[1].attr({'cx':(canvasWidth / 2) + radius, 'cy':(canvasHeight / 2)}); //R
+							maps[id].circles[2].attr({'cx':(canvasWidth / 2), 'cy':(canvasHeight / 2) + radius}); //B
+							maps[id].circles[3].attr({'cx':(canvasWidth / 2 ) - radius, 'cy':(canvasHeight / 2)}); //L
+														
+							}
+							
+							for(var i = 0 ; i < maps[id].circles.length ; i++ ){
+								maps[id].circles[i].stop().animate({'r':radius}, 400);							
+							}							
+							
+
+						}					
+				}			
+				
+				
+				
+				/*********************************************
+				 * 
+				 * 
+				 *						MAPS 
+				 * 
+				 * 
+				 *********************************************/
+
+                var colours = ['#ee2626', '#fcc23b', '#457df5', '#00a45e'];
+                
+                function RandomNumber(){
+                    return Math.floor(Math.random() * colours.length);
+                }
+
+                function calculate_a_point_on_a_circles_circumference(circle_radius, circle_center_x_axis, circle_center_y_axis, angle_in_degrees){
+                    var x = circle_center_x_axis + (circle_radius * Math.cos((angle_in_degrees - 90) * (Math.PI / 180))), y = circle_center_y_axis + (circle_radius * Math.sin((angle_in_degrees - 90) * (Math.PI / 180)));
+                    return ({
+                        "cx": x,
+                        "cy": y
+                    });
+                }
+
+
+				function setHover(city , language ,  percentage , year){
+					
+					$hover.html(language + " in " + city + " (" +  year + ")<br>" + percentage + "%" );
+				
+					intervals['hover'] = setInterval(function(){
+					
+    					var scroll = $(window).scrollTop();
+						
+						var left_;
+						
+						if (mouseX > ($hover.parent().width() / 2)) {
+							left_ = (mouseX - $hover.width() - (mousePadding * 2.5)) + "px";
+						}
+						else {
+							left_ = (mouseX + (mousePadding * 1.6)) + "px";
+						}
+						
+						$hover.css({
+							"top": (scroll + mouseY - mousePadding) + "px",
+							"left": left_
+						});
+						
+					},20);
+					
+					$hover.removeClass('hide');
+					
+				}  
+					
+				function removeHover(){
+					$hover.addClass('hide');
+					
+					clearInterval(intervals['hover']);				
+					
+					$hover.text('');
+					$hover.css({
+						"top": -100,
+						"left": -100
+					});				
+				
+				}
+					
+                
+                function setRadius(id){
+					
+					//alert(id);
+                
+                    var $map = $('#' + id);
+                    var graphic_page = $map.parent().parent().parent();
+                    
+                    var stageWidth = $map.width();
+                    var stageHeight = $map.height();
+                    
+                    
+                    maps[id].centerBubble.attr({
+                        "cx": maps[id].bigCX,
+                        "cy": maps[id].bigCY
+                    });
+                    
+                    maps[id].centerBubble.stop().animate({
+                        "cx": maps[id].bigCX,
+                        "cy": maps[id].bigCY,
+                        "r": maps[id].bigR
+                    }, 400);
+                    
+                    maps[id].centerText.attr({
+                        "x": maps[id].bigCX,
+                        "y": maps[id].bigCY
+                    });
+                    
+					upDateBubbleChart(id);
+					
+                }
+				
+                function sortByKey(array, key){
+                    return array.sort(function(a, b){
+                        var x = a[key];
+                        var y = b[key];
+                        return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+                    });
+                }
+                
+                function sortAlphabetical(array, key){
+                    return array.sort(function(a, b){
+                        var x = a[key];
+                        var y = b[key];
+                        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+                    });
+                }
+				
+                function getArrayIndex(tagName , id){
+                    var i = null;
+                    for (i = 0; maps[id].oldSortedArray.length > i; i++) {
+                        if (maps[id].oldSortedArray[i] === tagName) {
+                            return i;
+                        }
+                    }
+                    return false;
+                }
+				
+				
+                function upDateBubbleChart(id){
+					
+					
+					var yearsLookUp =[];
+					
+					yearsLookUp['2004']=0;
+					yearsLookUp['2005']=1;
+					yearsLookUp['2006']=2;
+					yearsLookUp['2007']=3;
+					yearsLookUp['2008']=4;
+					yearsLookUp['2009']=5;
+					yearsLookUp['2010']=6;
+					yearsLookUp['2011']=7;
+					yearsLookUp['2012']=8;
+					yearsLookUp['2013']=9;
+					yearsLookUp['2014']=10;
+					yearsLookUp['2015']=11;
+					
+					maps[id].dataPoint = (yearsLookUp[MODEL[$('#'+id).parent().parent().parent().attr('id')].year]);
+                
+                   var total = 0, degrees = 0, radius, newR, radius_multiplier, i, number_of_bubbles_to_show = 0, XY, toggle , dataPoint = 0, x = 1;
+                    
+                   
+                   sortAlphabetical(maps[id].data[maps[id].dataPoint], 'id');
+                   sortByKey(maps[id].data[maps[id].dataPoint], 'area');
+
+					//alert(maps[id].dataPoint);
+                    
+					var max = maps[id].data[maps[id].dataPoint].length;
+					
+                    toggle = 1;
+					
+					
+                    if (MODEL[$('#'+id).parent().parent().parent().attr('id')].showBiggest) {
+                        toggle = 0;
+                    }
+					
+					if(max > 10 && toggle == 1){
+						max = 11;
+					} else {
+						max = 10;
+					}
+                    
+                    for (i = toggle; i < max; i++) {
+                    
+                        // radius = sqrt(area / PI)
+                        total = total + Math.sqrt(maps[id].data[maps[id].dataPoint][i].area / Math.PI)
+                        
+                        if (maps[id].data[maps[id].dataPoint][i].area > 0) {
+                            number_of_bubbles_to_show++;
+                        }
+                    }
+                    
+                    maps[id].centerText.attr({
+                        "x": maps[id].bigCX,
+                        "y": maps[id].bigCY
+                    });
+                    
+                    if (total == 0) {
+                        maps[id].centerText.attr("text", "No data in " +  MODEL[$('#'+id).parent().parent().parent().attr('id')].year );
+                    }
+                    else {
+                        maps[id].centerText.attr("text", "");
+                    }
+                    
+					
+                    var arrayIndex;
+                    for (i = 0; i < maps[id].data[maps[id].dataPoint].length; i++) {
+                    
+                    
+                       arrayIndex = getArrayIndex(maps[id].data[maps[id].dataPoint][i].id , id);
+						
+
+                        if (i < 10 + toggle && i >= 0 + toggle) {
+                            radius = Math.sqrt(maps[id].data[maps[id].dataPoint][i].area / Math.PI);
+                        }
+                        else {
+                            radius = 0;
+                        }
+
+                        if (radius > 0) {
+                        
+                            radius_multiplier = (maps[id].bigR * 2) / total;
+                            if (number_of_bubbles_to_show < 3) {
+                                radius_multiplier = maps[id].bigR / total;
+                            }
+                            
+							
+                            degrees = degrees + radius;
+                            newR = (360 / total) * (degrees - (radius / 2));
+                            XY = calculate_a_point_on_a_circles_circumference(maps[id].bigR, maps[id].bigCX, maps[id].bigCY, newR);
+                            
+                            if (number_of_bubbles_to_show == 1) {
+                                XY.cy = maps[id].bigCY;
+                                XY.cx = maps[id].bigCX;
+                            }
+							
+					//console.log( maps[id].bubbles);
+							
+                            maps[id].bubbles[arrayIndex].stop().animate({
+                                "cx": XY.cx,
+                                "cy": XY.cy,
+                                "r": radius * radius_multiplier
+                            }, 400);
+							
+							
+							
+							
+                            maps[id].texts[arrayIndex].attr("fill-opacity", 0).hide();
+                            maps[id].texts[arrayIndex].attr("text", maps[id].data[maps[id].dataPoint][i].area + "%" + "\n" + maps[id].data[maps[id].dataPoint][i].id);
+                            
+							
+							if (maps[id].texts[arrayIndex].getBBox().width < 2 * (radius * radius_multiplier)) {
+                                maps[id].texts[arrayIndex].attr("fill-opacity", 1).show();
+                            }
+                            else {
+                                maps[id].texts[arrayIndex].attr("text", maps[id].data[maps[id].dataPoint][i].id);
+                                if (maps[id].texts[arrayIndex].getBBox().width < 2 * (radius * radius_multiplier)) {
+                                    maps[id].texts[arrayIndex].attr("fill-opacity", 1).show();
+                                }
+                                else {
+                                    maps[id].texts[arrayIndex].attr("text", maps[id].data[maps[id].dataPoint][i].area + "%");
+                                    if (maps[id].texts[arrayIndex].getBBox().width < 2 * (radius * radius_multiplier)) {
+                                        maps[id].texts[arrayIndex].attr("fill-opacity", 1).show();
+                                    } else {
+                                        maps[id].texts[arrayIndex].attr("fill-opacity", 0).hide();
+									}
+                                }
+                            }
+                            
+                            
+                            maps[id].texts[arrayIndex].stop().animate({
+                                "x": XY.cx,
+                                "y": XY.cy,
+                            }, 400);
+							
+                        }
+
+
+
+						
+                        else {
+                            XY = calculate_a_point_on_a_circles_circumference(maps[id].bigR, maps[id].bigCX, maps[id].bigCY, 0);
+                            
+                            maps[id].bubbles[arrayIndex].stop().animate({
+                                "cx": maps[id].bigCX,
+                                "cy": maps[id].bigCY,
+                                "r": 0
+                            }, 400);
+                            maps[id].texts[arrayIndex].stop().attr({
+                                "x": maps[id].bigCX,
+                                "y": maps[id].bigCY,
+                                "text": ""
+                            }).hide();
+                        }
+
+                    }
+					
+					
+					
+                }	
+				
+				
+                function getCurrentArrayIndex(tagName , mapID){
+                    for (var i = 0; i < (maps[mapID].data[maps[mapID].dataPoint]).length; i++) {
+                        if (maps[mapID].data[maps[mapID].dataPoint][i].id == tagName) {
+                            return i;
+                        }
+                    }
+                    return false;
+                }		
+				
+				
+                function getHoverText(tagPoint , mapID){
+                    for (var i = 0; maps[mapID].hoverSortedArray.length > i; i++) {
+                        if (i === tagPoint) {
+                            return i;
+                        }
+                    }
+                    return false;
+                }
+				
+                function clicks(test, i , mapID){
+                    test.mouseover(function(){
+                        test.attr("fill-opacity", 0.6);
+
+						var graphic_id = $('#'+mapID).parent().parent().parent().attr('id');
+						
+						var year = MODEL[graphic_id].year
+						
+						var city = '';
+						
+						var language = '';
+						
+						var percentage =  maps[mapID].data[maps[mapID].dataPoint][getCurrentArrayIndex(maps[mapID].hoverSortedArray[getHoverText(i , mapID)].id , mapID )].area   ;
+						
+						if ((MODEL[graphic_id].dataSet).replace(/Cities/g, '').length == (MODEL[ graphic_id].dataSet).length) {
+							language = MODEL[graphic_id].dataPoint;
+							city = maps[mapID].hoverSortedArray[getHoverText(i , mapID)].id;
+						} else {
+							language = maps[mapID].hoverSortedArray[getHoverText(i , mapID)].id;
+							city = MODEL[graphic_id].dataPoint;
+						}
+						
+                        setHover( city , language ,  percentage , year );
+						
+                    }).mouseout(function(){
+                        removeHover();
+                        test.attr("fill-opacity", 0.4);
+                    });
+                }			
+					
+								
+				
+				function drawMap(mapID){
+										
+					//mapID = 'map_one';
+					//mapLocations = b;
+                    var $map = $('#' + mapID);
+                    var canvasWidth = $map.width();
+                    var canvasHeight = $map.height();
+					
+					var graphic_page = $map.parent().parent().parent();
+										
+					maps[mapID].paper.clear();
+					
+					var key = graphic_page.find(".navigation ol li:eq(2)").text().replace(/[^a-z\-A-Z]+/g, '');
+					
+
+					// make data on the fly...
+					maps[mapID].data = [];
+					
+					for (var i = 0; i < years.length; i++) {
+
+						maps[mapID].data[i] = [];
+						
+						if (years[i] == graphic_page.find("h4").text().replace(/[^0-9]+/g, '')){
+							maps[mapID].dataPoint = i;
+						}
+					
+						if (graphic_page.find(".navigation ol li:eq(1)").text().replace(/[^a-z\-A-Z]+/g, '') == 'Cities') {
+							// using all 140 in one city
+							$.each(data, function(idx, obj){
+								//mapData[idx] = (data[idx][cityAbbreviation[key]][year]);
+								//amount_of_balls = (data[idx][cityAbbreviation[key]][year]) * 100; // area!
+								//amount_of_balls = idx // id!
+								
+								maps[mapID].data[i].push({
+									"id": idx,
+									"area": (data[idx][cityAbbreviation[key]][years[i].slice(-2)]) * 100
+								});
+							});
+						}
+						else {
+							// one across 8 cities
+							$.each(data[key], function(idx, obj){
+								//mapData[cityFullNames[idx]] = (data[key][idx][year]);
+								//amount_of_balls = (data[key][idx][year]) * 100; // area!
+								//amount_of_balls = cityFullNames[idx] // id!
+								maps[mapID].data[i].push({
+									"id": cityFullNames[idx],
+									"area": (data[key][idx][years[i].slice(-2)]) * 100
+								});
+							});
+						}
+					}
+
+                    var i;
+					
+					maps[mapID].oldSortedArray = [];
+					maps[mapID].hoverSortedArray = [];
+                    for (i = 0; i < maps[mapID].data[maps[mapID].dataPoint].length; i++) {
+						
+                        maps[mapID].oldSortedArray[i] = (maps[mapID].data[maps[mapID].dataPoint][i].id);
+                        maps[mapID].hoverSortedArray.push(maps[mapID].data[maps[mapID].dataPoint][i]);
+                    }
+					
+					
+					maps[mapID].texts = [];
+					maps[mapID].bubbles = [];
+                    
+                    maps[mapID].centerBubble = maps[mapID].paper.circle(maps[mapID].bigCX, maps[mapID].bigCY, 0).attr({
+                        "fill": "#e8e8e8",
+                        "fill-opacity": 0.6,
+                        "stroke-width": 0
+                    });
+                    
+                    maps[mapID].centerText = maps[mapID].paper.text(maps[mapID].bigCX, maps[mapID].bigCY, "");
+                    
+					
+                    for (i = 0; i < maps[mapID].data[0].length; i++) {
+                    
+                        radius = 0;
+                        
+                        maps[mapID].texts.push(maps[mapID].paper.text(maps[mapID].bigCX, maps[mapID].bigCY, ""));
+                        
+                        maps[mapID].bubbles.push(maps[mapID].paper.circle(maps[mapID].bigCX, maps[mapID].bigCY, 0).attr({
+                            "fill": colours[RandomNumber()],
+                            "fill-opacity": 0.4,
+                            "stroke-width": 0
+                        }));
+                        
+					clicks(maps[mapID].bubbles[i] , i , mapID);
+					  
+					    
+                    }
+					
+                    
+					maps[mapID].oldSortedArray = [];
+					maps[mapID].hoverSortedArray = [];
+                    for (i = 0; i < maps[mapID].data[maps[mapID].dataPoint].length; i++) {
+						
+                        maps[mapID].oldSortedArray[i] = (maps[mapID].data[maps[mapID].dataPoint][i].id);
+                        maps[mapID].hoverSortedArray.push(maps[mapID].data[maps[mapID].dataPoint][i]);
+                    }
+					
+
+					setRadius(mapID);
+
+				}
+				
+				
+				
+				// make canvas
+				$('.map').each(function(index) {
+					var $map = $(this);
+					var id = ($map.attr('id')).toString();
+					var canvasWidth = $map.parent().width();
+					var canvasHeight = $map.height();
+					var paper = Raphael(id, canvasWidth, canvasHeight);
+					maps[id] = {};
+					maps[id].paper = paper;	
+					
+                    maps[id].bigCX = canvasWidth / 2;
+                    maps[id].bigCY = canvasHeight / 2;
+                    
+                    maps[id].bigR = maps[id].bigCY / 2.2;
+                    
+                    if (maps[id].bigCY > maps[id].bigCX) {
+                        maps[id].bigR = maps[id].bigCX / 2.2;
+                    }				
+									
+				});
+				
+
+				
+				function updateMapSizes(){
+					
+					$('.map').each(function(index) {
+						var $map = $(this);
+						updateMapSize($map);
+					});	
+				}
+				
+                function updateMapSize($map){
+                
+                    if (!$map.parent().hasClass('hide')) {
+                    
+                        var id = ($map.attr('id')).toString();
+                        var canvasWidth = $map.parent().width();
+                        var canvasHeight = $map.height();
+                        maps[id].paper.setSize('100%', '100%');
+                        
+                        maps[id].bigCX = canvasWidth / 2;
+                        maps[id].bigCY = canvasHeight / 2;
+                        
+                        maps[id].bigR = maps[id].bigCY / 2.2;
+                        
+                        if (maps[id].bigCY > maps[id].bigCX) {
+                            maps[id].bigR = maps[id].bigCX / 2.2;
+                        }
+						
+						setRadius(id);
+                    }
+                }
+
+
+				/*********************************************
+				 * 
+				 * 
+				 *					Navigation 
+				 * 
+				 * 
+				 *********************************************/
+				
+				// CONTROLLER - one or two graphics showing /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            
+                $('#global_controls div span.toggle').click(function(){
+				
+                    if (MODEL.graphic_two.showing ) {
+                        MODEL.graphic_two.showing = false;
+                    }
+                    else {
+                        MODEL.graphic_two.showing = true;
+                    }
+										
+					numberOfGraphicsVIEW ();
+					setURL();
+					updateLandingImageSizes();
+                    
+                });
+				
+				// VIEW - one or two graphics showing /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				
+				function numberOfGraphicsVIEW () {
+					
+                    $('#global_controls div .button').removeClass("selected");
+					
+                    if ( ! MODEL.graphic_two.showing ) {
+                        $('#graphic_two').addClass("hide");
+                        $('#graphic_two').removeClass("half");
+                        $('#graphic_one').removeClass("half");
+                    	$('#global_controls div .button:eq(0)').addClass("selected");					
+                    }
+                    else {
+                        $('#graphic_two').removeClass("hide");
+                        $('#graphic_two').addClass("half");
+                        $('#graphic_one').addClass("half");
+                    	$('#global_controls div .button:eq(1)').addClass("selected");					
+                    }
+					
+					stoppedPlay($('#graphic_one'));
+					stoppedPlay($('#graphic_two'));
+					
+					reset_scrubber();
+					updateMapSizes();
+					footerVIEW();
+					
+				}
+				
+				
+
+
+				function stoppedPlay (graphic_id) {
+					graphic_id.find('.play').removeClass('hide');
+					graphic_id.find('.pause').addClass('hide');
+					clearInterval(intervals[graphic_id.attr('id')]);				
+				}
+
+
+				function switchPlay (graphic_id) {
+					if(graphic_id.find('.play').hasClass('hide')){
+						//alert('stopped');
+						stoppedPlay(graphic_id);						
+					} else {
+						//alert('playing');
+						graphic_id.find('.play').addClass('hide');
+						graphic_id.find('.pause').removeClass('hide');
+						
+						
+						if(graphic_id.find('h4').text().replace(/[^0-9]+/g, "") == '2015'){
+								graphic_id.find('h4').text(2004);
+								MODEL[graphic_id.attr('id')].year = '2004';
+								updateMap(graphic_id, '2004');
+								addMinoritiesText(graphic_id);
+								set_scrubber(graphic_id);	
+								setRadius( graphic_id.find('.map').attr('id') );
+						}
+						
+						var words;
+						
+						intervals[graphic_id.attr('id')] = setInterval(function() {
+							
+							words = Number(graphic_id.find('h4').text().replace(/[^0-9]+/g, "")) + 1;
+							if (words < 2016) {
+								MODEL[graphic_id.attr('id')].year = words;
+								updateMap(graphic_id, words);
+								
+							} else {
+								stoppedPlay(graphic_id);
+							}
+							setURL();
+	                    },
+	                    800);						
+					}
+				}
+				
+                function updateMap(graphic_id, words){
+                
+                    graphic_id.find('h4').text(words);
+                    addMinoritiesText(graphic_id);
+                    set_scrubber(graphic_id);
+                    setRadius(graphic_id.find('.map').attr('id'));
+                    
+                }
+
+								
+                $(".play_pause").click(function(e){
+					var graphic_id = $(this).parent().parent().parent().parent();
+					switchPlay(graphic_id);
+  					e.preventDefault();
+				});
+				
+
+
+				function set_x_dragging(min,max,half,dragger,graphic_number){
+					if(mouseX > min && mouseX < max){
+                   		dragger.offset({ left: mouseX - half  });
+						//setYearText (mouseX,min,max,graphic_number);
+					}				
+				}
+				
+				
+				// CONTROLLER - year /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				
+				function setYearText (magicX,min,max,graphic_number){
+										
+					var scope = ( 2015 - 2004) / (max - min);
+					var arrayNo = (magicX - max) * (scope * -1);					
+					arrayNo = Math.round(arrayNo);
+							
+					var graphic_id = (graphic_number.attr('id'));
+							
+					MODEL[graphic_id].year = years[arrayNo];
+																									
+					setYearTextVIEW(graphic_id);
+					
+					setRadius( graphic_number.find('.map').attr('id') );
+					
+					setURL();
+					
+				}
+				
+				
+				// VIEW - year /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				
+				function setYearTextVIEW(graphic_id_from_controller){
+				
+					var graphicDOM = $('#' + graphic_id_from_controller);
+					
+					graphicDOM.find('h4').text(MODEL[graphic_id_from_controller].year);
+					
+					addMinoritiesText(graphicDOM);
+					
+					
+					
+				}				
+				
+				
+				
+				function addMinoritiesText(graphic_number){
+				
+					var text_ = graphic_number.find('h4').text().replace(/[^0-9]+/g, "");
+				
+					graphic_number.find('h4').text( ": " + text_);				
+				
+				
+				}
+				
+				
+				
+				
+				$('.play_pause').each(function(index) {
+					var id = ($(this).parent().parent().parent().parent().attr('id'));
+					intervals[id] =  setInterval(function() {},20000000);
+					clearInterval(intervals[id]);							
+				});				
+                				
+				function set_scrubber(graphic_number){
+									
+					var dragger = graphic_number.find('.dragger');
+					var dragging_container = dragger.parent();
+					var half = dragger.width() / 2;
+					var min = dragging_container.position().left + half;
+					var max = min + dragging_container.width() - half - half;
+					var scope = (max - min) / (2015 - 2004);
+					
+					var year = Number(graphic_number.find('h4').text().replace(/[^0-9]+/g, ""));
+					
+					var arrayNo = (2004 - year) * -1;
+					
+					arrayNo = Math.round(arrayNo * scope);
+					dragger.offset({
+						left: min + arrayNo - half
+					})
+					
+
+					
+				}
+								
+				function reset_scrubber(){
+					
+					var pages = 0;
+					
+					$('h4').each(function(index) {
+						var graphic_number = $(this).parent().parent().parent();
+						
+						if(!graphic_number.find('.page_three').hasClass('hide') && !graphic_number.hasClass('hide') ){
+							pages++;
+						}
+												
+					});
+					
+					/*
+					if(pages == 2){
+						$('.scrollbar').addClass('hide');
+						$('#scrollbarMaster').removeClass('hide');										
+						//alert('2 big');					
+					} else {
+						$('.scrollbar').removeClass('hide');
+						$('#scrollbarMaster').addClass('hide');	
+						//alert('1 small');					
+					}
+					*/
+					
+					$('h4').each(function(index) {
+						var graphic_number = $(this).parent().parent().parent();
+						
+						set_scrubber(graphic_number);
+												
+					});					
+					
+					
+					
+					//id='scrollbarMaster' class="scrollbar"					
+					
+								
+				}
+				
+
+
+				$('#graphics .scrubber').bind("touchmove", function(e) {
+  					//Disable scrolling by preventing default touch behaviour
+  					e.preventDefault();
+					var dragger = $(this).find('.dragger');
+					var graphic_number = dragger.parent().parent().parent().parent().parent().parent();									
+					stoppedPlay(graphic_number);					
+					var half = dragger.width() / 2;
+					var dragging_container = dragger.parent();
+					var min = dragging_container.position().left + half;					
+					var max = min + dragging_container.width() - half - half;						
+					set_x_dragging(min,max,half,dragger,graphic_number);
+					setYearText (mouseX,min,max,graphic_number);
+
+
+				});
+
+
+                $("#graphics .scrubber").mousedown(function(e){
+  					e.preventDefault();
+					var dragger = $(this).find('.dragger');
+					var graphic_number = dragger.parent().parent().parent().parent().parent().parent();									
+					stoppedPlay(graphic_number);					
+					var half = dragger.width() / 2;
+					var dragging_container = dragger.parent();
+					var min = dragging_container.position().left + half;
+					var max = min + dragging_container.width() - half - half;
+                    
+					set_x_dragging(min,max,half,dragger,graphic_number);
+					
+					intervals['scrubber'] = setInterval(function() {
+						set_x_dragging(min,max,half,dragger,graphic_number);
+                    },
+                    100);
+					
+					intervals['h4'] = setInterval(function() {
+						setYearText (mouseX,min,max,graphic_number);
+                    },
+                    500);					
+							
+					$(window).on('mouseup', function(){
+						clearInterval(intervals['scrubber']);
+						clearInterval(intervals['h4']);
+						setYearText (mouseX,min,max,graphic_number);
+						$(window).off('mouseup');
+					});									
+				});
+
+
+				// CONTROLLER - breadcrumbs /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+                $(".navigation").on("click", "li", function(){
+					
+					var graphic_id = $(this).parent().parent().parent().attr('id');
+					
+					MODEL[graphic_id].page = Number($(this).index());
+					
+					breadcrumbsVIEW(graphic_id);
+										
+                });
+				
+				
+				// VIEW - breadcrumbs /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				
+				function breadcrumbsVIEW(graphic_id_from_controller){
+					
+					
+					var graphicDOM = $('#' + graphic_id_from_controller);
+					
+					
+					var trigger = function(graphic_id , $click){
+					
+					
+						var pagesClass = [".page_one",".page_two",".page_three"];
+					
+						for (var i = 0; i < pagesClass.length; i++) {
+							graphic_id.find(pagesClass[i]).addClass("hide");
+						}
+						
+						
+						for (var i = $click + 1; i < 3; i++) {
+							graphic_id.find(".navigation ol li:eq( " + i + " )").html('');
+						}
+						
+						
+						if(pagesClass[$click] == ".page_two"){
+							pageOneVIEW(graphic_id.attr('id'));
+						} else {
+							graphic_id.find(pagesClass[$click]).removeClass("hide");
+						}
+						
+						stoppedPlay(graphic_id);
+						
+						reset_scrubber();
+						
+						graphic_id.find(".navigation ol li:eq( " + $click + " )").find('a').removeClass("back_links");
+						
+					}
+					
+					
+					pageAnimation(trigger , graphicDOM , MODEL[graphic_id_from_controller].page);					
+				
+					
+				
+				}				
+				
+
+				
+				
+				// CONTROLLER - page two /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				
+                $(".pick_one_from_list").on("click", "li", function(){
+				
+					
+					var graphic_id = $(this).parent().parent().parent().parent().parent().attr('id');
+					
+					MODEL[graphic_id].dataPoint = $(this).text();
+					
+					MODEL[graphic_id].page = 2;
+					
+					
+					pageTwoVIEW(graphic_id);
+
+					
+				});
+				
+				// VIEW - page two /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				
+				function pageTwoVIEW(graphic_id_from_controller){
+				
+					var graphicDOM = $('#' + graphic_id_from_controller);
+				
+					var trigger = function(graphic_id , foo){
+										
+						
+						var mapID = graphic_id.find('.map').attr('id');
+						var mapLocations = b;
+						
+						
+						if ( ( MODEL[graphic_id.attr('id')].dataSet ).replace(/Cities/g, '').length != ( MODEL[graphic_id.attr('id')].dataSet ).length ) {
+							graphic_id.find(".navigation ol li:eq(1)").html('<span> &raquo </span> <a> Cities</a>');
+							mapLocations = a;
+						} else {
+							graphic_id.find(".navigation ol li:eq(1)").html('<span> &raquo </span> <a> Languages</a>');
+							mapLocations = b;
+						}				
+						
+						
+						graphic_id.find(".navigation ol li:eq(2)").html('<span> &raquo </span><a> ' + foo + '</a>');
+						
+						graphic_id.find(".navigation ol li:eq(1)").find('a').addClass("back_links");
+						graphic_id.find(".navigation ol li:eq(0)").find('a').addClass("back_links");
+						
+						graphic_id.find(".page_two").addClass("hide");
+						graphic_id.find(".page_three").removeClass("hide");
+						graphic_id.find("h3").text(foo);
+						
+						
+						
+						reset_scrubber();
+						drawMap(mapID);
+						updateMapSize(graphic_id.find(".map"));
+						
+						
+						addMinoritiesText(graphic_id);
+						
+						
+						
+					};
+
+					pageAnimation(trigger , graphicDOM , MODEL[graphic_id_from_controller].dataPoint);
+									
+				
+				}				
+				
+				// CONTROLLER - showBiggest /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				
+                $(".map_toggle span").click(function(){
+				
+					var graphic_id = $(this).parent().parent().parent().parent().parent().attr('id');
+					
+                    MODEL[graphic_id].showBiggest = !Boolean(MODEL[graphic_id].showBiggest);
+									
+					showBiggestVIEW(graphic_id);
+					
+					setRadius($(this).parent().parent().parent().find('.map').attr('id') );
+					
+					setURL();
+								
+				});	
+				
+				// VIEW - showBiggest /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				
+				function showBiggestVIEW(graphic_id){
+				
+					var graphicDOM = $('#' + graphic_id);
+					
+					graphicDOM.find(".map_toggle .button").removeClass('selected');
+				
+                    if ( Boolean(MODEL[graphic_id].showBiggest) ) {
+                    	graphicDOM.find(".map_toggle .button:eq(1)").addClass("selected");					
+                    }
+                    else {
+                    	graphicDOM.find(".map_toggle .button:eq(0)").addClass("selected");					
+                    }
+					
+									
+					
+				}		
+					
+					
+				function pageAnimation(foo , $page , $click){
+				
+					smallLandingImageSizes($page);
+					
+					var $whiteBox = $page.find('.whiteBox');
+					
+	                
+					$whiteBox.stop();
+					
+					
+					
+					
+					
+					
+	                $whiteBox.css({
+	                    "width": "0",
+	                    "opacity": "1",
+	                    "height": ($page.height()) ,
+						"z-index": 10000
+						
+	                });
+					
+					
+					
+	                $whiteBox.animate({
+	                    "width": "100%"
+	                }, {
+	                    duration: 150,
+	                    complete: function(){
+	                        foo($page , $click);
+							
+	                        $whiteBox.animate({
+	                            "opacity": "0"
+	                        }, {
+	                            duration: 400,
+	                            complete: function(){
+									
+									set_scrubber($page);
+									
+	                                $whiteBox.css({
+	                                    "width": "0"
+	                                });
+									setURL();
+									updateLandingImageSizes();
+	                            }
+	                        });
+	                    }
+	                });
+					
+				}
+				
+				// CONTROLLER - page one /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+					
+                $('.option .button').click(function(){
+					
+					var graphic_id = $(this).parent().parent().parent().parent().attr('id');
+					
+					var label = $(this).text();
+					
+					MODEL[graphic_id].page = 1;
+					
+                    label = label.replace(/ /g, '')
+                    label = label.replace(/\s/g,"");					
+                    label = label.slice(0, -1);
+					MODEL[graphic_id].dataSet = label;
+					
+					pageOneVIEW(graphic_id);
+
+					
+				});
+				
+				// VIEW - page one /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				
+				function pageOneVIEW (graphic_id_from_controller){
+				
+					var graphicDOM = $('#' + graphic_id_from_controller);
+					
+					var trigger = function(graphic_id , label){
+						var choose = [];
+						choose['Cities'] = 'city';
+						choose['Languages'] = 'language';
+						
+						graphic_id.find(".page_one").addClass("hide");
+						graphic_id.find(".page_two").removeClass("hide");
+						
+						graphic_id.find(".navigation ol li:eq(1)" ).html('<span> &raquo </span><a>' + label + '</a>');
+						
+						graphic_id.find("h2" ).text('Choose a ' + choose[jQuery.trim(label)]);
+						
+						list = "";
+						
+						var cities = ['Berlin','Delhi','London','Madrid','New York','Paris','Sao Paulo','Shanghai','Toronto'];					
+	                    
+	                    if (jQuery.trim(label) == 'Languages') {
+	                    
+	                        $.each(data, function(index, value){
+	                            list += ('<li>' + index + '<a></a></li>');
+	                        });
+	                    }
+	                    else {                    
+	                        $.each(cities, function(index, value){
+	                            list += ('<li>' + value + '<a></a></li>');
+	                        });
+	                    }
+						
+						graphic_id.find(".navigation ol li:eq(0)" ).find('a').addClass("back_links");						
+						graphic_id.find(".pick_one_from_list").html(list);
+						
+						
+					};
+										
+					pageAnimation(trigger , graphicDOM, MODEL[graphic_id_from_controller].dataSet);					
+					
+					//setURL();
+				}				
+				
+				
+				
+				/*********************************************
+				 * 
+				 * 
+				 *				Start up data viz... 
+				 * 
+				 * 
+				 *********************************************/				
+				
+				// VIEW - footer /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				
+				function footerVIEW () {
+				
+				
+					var f = $("#graphic_one").width() / $("#graphic_one").parent().width() * 100;
+
+                    if ( MODEL.graphic_two.showing && f == 100  ) {
+                        //2
+						$(".copyright *").css('margin-top','820pt');
+                    } else {
+						//1
+						$(".copyright *").css('margin-top','410pt');
+					}	
+					
+					$(".copyright .logo").css('margin-top','0');
+		
+				
+				}				
+				
+				
+				function setURL(){
+					history.pushState('', document.title, window.location.pathname);
+					window.location.hash = "0=" + MODEL.graphic_two.showing  +  "&1a=" + MODEL.graphic_one.page   +  "&2a=" + MODEL.graphic_one.dataSet  +  "&3a=" + MODEL.graphic_one.dataPoint  +  "&4a=" +  MODEL.graphic_one.showBiggest + "&5a=" + MODEL.graphic_one.year  + "&1b=" + MODEL.graphic_two.page   +  "&2b=" + MODEL.graphic_two.dataSet  +  "&3b=" + MODEL.graphic_two.dataPoint  +  "&4b=" +  MODEL.graphic_two.showBiggest + "&5b=" + MODEL.graphic_two.year  ;				
+				}					
+				
+				
+				var hash = window.location.hash;				
+				hash = "" + hash.replace('#','');
+				
+				var passedMODEL = hash.split("&");
+				
+                $.each(passedMODEL, function(index, value){
+					
+					var foo = value.split("=");
+                    passedMODEL[foo[0]] = foo[1];
+                });
+								
+				
+				
+                /*
+                 0 MODEL.graphic_one.showing Y
+                 1 MODEL.graphic_one.page Y
+                 2 MODEL.graphic_one.dataSet Y
+                 3 MODEL.graphic_one.dataPoint Y
+                 4 MODEL.graphic_one.showBiggest Y
+                 5 MODEL.graphic_one.year Y
+                 */			
+				
+				if(passedMODEL['0'] == 'true' || passedMODEL['0'] == 'false' ){
+					MODEL.graphic_two.showing = $.parseJSON(passedMODEL['0']);					
+				}
+				if(passedMODEL['4a'] == 'true' || passedMODEL['4a'] == 'false' ){
+					MODEL.graphic_one.showBiggest = $.parseJSON(passedMODEL['4a']);					
+				}				
+				if(passedMODEL['4b'] == 'true' || passedMODEL['4b'] == 'false' ){
+					MODEL.graphic_two.showBiggest = $.parseJSON(passedMODEL['4b']);					
+				}						
+				if(passedMODEL['1b'] == '0' || passedMODEL['1b'] == '1' ||  passedMODEL['1b'] == '2' ){
+					MODEL.graphic_two.page = Number(passedMODEL['1b']);					
+				}						
+				if(passedMODEL['1a'] == '0' || passedMODEL['1a'] == '1' ||  passedMODEL['1a'] == '2' ){
+					MODEL.graphic_one.page = Number(passedMODEL['1a']);					
+				}
+				if(Number(passedMODEL['5a']) > 2003 && Number(passedMODEL['5a']) < 2016  ){
+					MODEL.graphic_one.year = Number(passedMODEL['5a']);					
+				}
+				if(Number(passedMODEL['5b']) > 2003 && Number(passedMODEL['5b']) < 2016  ){
+					MODEL.graphic_two.year = Number(passedMODEL['5b']);					
+				}
+				if( passedMODEL['2b'] == 'Cities' || passedMODEL['2b'] == 'Languages'  ){
+					MODEL.graphic_two.dataSet = passedMODEL['2b'];
+                    
+                    if (data[passedMODEL['3b']]) {
+                        // Languages
+                        MODEL.graphic_two.dataPoint = passedMODEL['3b'];
+                    } else if(cityAbbreviation[(passedMODEL['3b']).replace(/ /g, "")] || cityAbbreviation[(passedMODEL['3b']).replace(/%20/g, "")]){
+						// Cities
+                        MODEL.graphic_two.dataPoint = passedMODEL['3b'].replace(/%20/g, " ");
+					}			
+				}
+				if( passedMODEL['2a'] == 'Cities' || passedMODEL['2a'] == 'Languages'  ){
+					MODEL.graphic_one.dataSet = passedMODEL['2a'];
+                    
+                    if (data[passedMODEL['3a']]) {
+                        // Languages
+                        MODEL.graphic_one.dataPoint = passedMODEL['3a'];
+                    } else if(cityAbbreviation[(passedMODEL['3a']).replace(/ /g, "")] || cityAbbreviation[(passedMODEL['3a']).replace(/%20/g, "")]){
+						// Cities
+                        MODEL.graphic_one.dataPoint = passedMODEL['3a'].replace(/%20/g, " ");
+					}						
+				}					 
+															
+					
+					
+				// SET UP	
+				
+				
+				
+				
+	                $('#loading').animate({
+	                	"opacity": "0"
+	                }, {
+	                    duration: "slow",
+	                    complete: function(){
+                			$('#loading').addClass("hide");
+							
+			                $('#global_controls').css("opacity", "0");
+			                $('#graphics').css("opacity", "0");
+							$('.copyright').css("opacity", "0");						
+			                $('#global_controls').removeClass("hide");
+			                $('#graphics').removeClass("hide");
+							$('.copyright').removeClass("hide");
+							
+							$('.copyright').css("z-index",100000000);							
+										
+                            $("#graphics").animate({
+                                "opacity": "1"
+                            }, "slow");
+                            $(".copyright").animate({
+                                "opacity": "1"
+                            }, "slow");							
+                            $("#global_controls").animate({
+                                "opacity": "1"
+                            }, "slow");	
+							
+							
+                            breadcrumbsVIEW('graphic_one');
+                            breadcrumbsVIEW('graphic_two');							
+							
+                            
+                            if (MODEL['graphic_two'].page == 1) {
+                                pageOneVIEW('graphic_two');
+                            }
+                            else 
+                                if (MODEL['graphic_two'].page == 2) {
+                                    setYearTextVIEW('graphic_two');
+                                    pageTwoVIEW('graphic_two');
+                                    showBiggestVIEW('graphic_two');
+                                    set_scrubber($('#graphic_two'));
+                                }
+                            
+                            if (MODEL['graphic_one'].page == 1) {
+                                pageOneVIEW('graphic_one');
+                            }
+                            else 
+                                if (MODEL['graphic_one'].page == 2) {
+                                    setYearTextVIEW('graphic_one');
+                                    pageTwoVIEW('graphic_one');
+                                    showBiggestVIEW('graphic_one')
+                                    set_scrubber($('#graphic_one'));
+                                    
+                                }
+                            
+
+                            numberOfGraphicsVIEW();
+                            setURL();
+							
+	                    }
+	                });	
+                
+            });
+        </script>
+    </body>
+</html>

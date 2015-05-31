@@ -2120,11 +2120,11 @@
 				
 				// CONTROLLER - page one /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 					
-                $('.option .button').click(function(){
+                $('.option').click(function(){
 					
-					var graphic_id = $(this).parent().parent().parent().parent().attr('id');
+					var graphic_id = $(this).parent().parent().parent().attr('id');
 					
-					var label = $(this).text();
+					var label = $(this).find('.button').text();
 					
 					MODEL[graphic_id].page = 1;
 					

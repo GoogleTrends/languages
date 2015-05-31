@@ -125,9 +125,9 @@
 	        
 	        .play_line div {
 	            position: absolute;
-	            height: 2pt;
-	            margin-top: 15pt;
-	            background: #9E9E9E;
+	            height: 1pt;
+	            margin-top: 14pt;
+	            background: #b6b6b6;
 	        }
 	        
 	        span.scrubber .dragger {
@@ -136,13 +136,14 @@
 	        
 	        .play_pause, .timeline {
 	            display: inline-block;
-	            background: #212121;
+	            background: #f1f0f0;
 	        }
 	        
 	        .timeline span {
 	            display: inline-block;
 	            width: 12%;
-	            color: white;
+	            color: #888;
+				font-size:10pt;
 	        }
 	        
 	        .timeline span.scrubber {
@@ -157,6 +158,10 @@
 	        .play_pause {
 	            background: #DA453D;
 	        }
+	        .play_pause , .timeline {
+	            -moz-border-radius: 3pt;
+	            border-radius: 3pt;				
+			}
 	        
 	        .play {
 	            height: 100%;
@@ -166,7 +171,7 @@
 	        .play div:after {
 	            width: 0;
 	            height: 0;
-	            border: 10pt solid transparent; 
+	            border: 7pt solid transparent; 
 	            border-right: none;
 	            border-top-color: #DA453D;
 	            border-bottom-color: #DA453D;
@@ -174,9 +179,9 @@
 	            vertical-align: middle;
 	            display: inline-block;
 	            position: relative;
-	            top: -2pt;
+	            top: 0;
 	            background: #fff;
-	            left: -2pt;
+	            left: 0;
 	        }
 	        
 	        .play > div {
@@ -191,13 +196,13 @@
 	        }
 	        
 	        .pause > div {
-	            border-left: 7pt solid #fff;
-	            border-right: 7pt solid #fff;
-	            margin-top: 14pt;
+	            border-left: 5pt solid #fff;
+	            border-right: 5pt solid #fff;
+	            margin-top: 16pt;
 	            margin-left: auto;
 	            margin-right: auto;
-	            height: 18pt;
-	            width: 12%;
+	            height: 13pt;
+	            width: 6%;
 	        }
 	        
 	        .timeline span.scrubber .dragger {
@@ -219,10 +224,10 @@
 	        .pick_one_from_list li a:after {
 	            width: 0;
 	            height: 0;
-	            border: 7pt solid transparent; /* 5 */
+	            border: 5pt solid transparent; /* 5 */
 	            border-right: none;
-	            border-top-color: #edecec;
-	            border-bottom-color: #edecec;
+	            border-top-color: #f1f0f0;
+	            border-bottom-color: #f1f0f0;
 	            content: '';
 	            vertical-align: middle;
 	            display: inline-block;
@@ -282,7 +287,7 @@
 	        
 	        .pick_one_from_list li {
 	            padding: 10pt 0;
-	            background: #edecec;
+	            background: #f1f0f0;
 	            color: #DA453D;
 	            margin: 1pt 0;
 	            font-weight: bold;
@@ -340,7 +345,7 @@
 	        }
 	        
 	        .option {
-	            background: #edecec;
+	            background: #f1f0f0;
 	            margin-left: auto;
 	            margin-right: auto;
 	            width: 70%;
@@ -414,6 +419,8 @@
 	            margin: 0 15%;
 	            width: 70%;
 	            background-color: #333;
+	            -moz-border-radius: 2pt;
+	            border-radius: 2pt;				
 	        }
 	        
 	        div.page_one > div.option {
@@ -433,13 +440,13 @@
 	        
 	        #global_controls {
 	            padding: 15pt 0;
-	            border-top: 2pt solid #edecec;
+	            border-top: 2pt solid #f1f0f0;
 	        }
 	        
 	        .navigation {
 	            padding: 8pt 0;
-	            border-top: 2pt solid #edecec;
-	            border-bottom: 2pt solid #edecec;
+	            border-top: 2pt solid #f1f0f0;
+	            border-bottom: 2pt solid #f1f0f0;
 	        }
 	        
 	        body {
@@ -1504,8 +1511,8 @@
 					maps[mapID].bubbles = [];
                     
                     maps[mapID].centerBubble = maps[mapID].paper.circle(maps[mapID].bigCX, maps[mapID].bigCY, 0).attr({
-                        "fill": "#e8e8e8",
-                        "fill-opacity": 0.6,
+                        "fill": "#f1f0f0",
+                        "fill-opacity": 1,
                         "stroke-width": 0
                     });
                     

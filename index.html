@@ -1,10 +1,19 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
     <head>
+    	
+	    <meta property="og:title" content="Language data visualisation" />
+	    <meta property="og:description" content="2004 to 2015" />
+	    <meta property="og:image" content="share.png" />
+		<link rel="image_src" href="share.png"/>
+
         <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
         <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+		
+		
         <title>Language data visualisation</title>
         <style> 
 		
@@ -39,6 +48,7 @@
 	            float: right;
 	            width: auto;
 	        }
+			
 	        
 	        #loading {
 	            background-image: url('preloader.gif');
@@ -607,6 +617,7 @@
         </style>
     </head>
     <body>
+    	
 		<div id='hover' class='hide'></div>
         <div id="content">
         	<div id="loading">
@@ -622,7 +633,7 @@
                 <div class="share">
                     <span>Share:</span>
                     <span><a class='facebook' href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank"><img src="facebook.png" alt='Facebook' ></a></span>
-                    <span><a class='twitter' href="https://twitter.com/intent/tweet?text=text Here&url=" target="_blank"><img src="twitter.png" alt='Twitter' ></a></span>
+                    <span><a class='twitter' href="https://twitter.com/intent/tweet?text=Look at this&url=" target="_blank"><img src="twitter.png" alt='Twitter' ></a></span>
                     <span><a class='google' href="https://plus.google.com/share?url=" target="_blank"><img src="google.png" alt='Google' ></a></span>
                 </div>
             </div>
@@ -961,13 +972,13 @@
 				
 				
                 $facebook.click(function(){
-                    $facebook.attr("href", $facebookURL + (window.location.href).replace('#','%23'));
+                    $facebook.attr("href", $facebookURL + (window.location.href).replace('#','%23').replace(/&/g,'%26').replace(/=/g,'%3D').replace(/_/g,'%5F').replace(/-/g,'%2D'));
                 });
                 $twitter.click(function(){
-                    $twitter.attr("href", $twitterURL + (window.location.href).replace('#','%23'));
+                    $twitter.attr("href", $twitterURL + (window.location.href).replace('#','%23').replace(/&/g,'%26').replace(/=/g,'%3D').replace(/_/g,'%5F').replace(/-/g,'%2D'));
                 });
                 $google.click(function(){
-                    $google.attr("href", $googleURL + (window.location.href).replace('#','%23'));
+                    $google.attr("href", $googleURL + (window.location.href).replace('#','%23').replace(/&/g,'%26').replace(/=/g,'%3D').replace(/_/g,'%5F').replace(/-/g,'%2D'));
                 });				
 				
 				
@@ -2188,7 +2199,7 @@
 				
 				function setURL(){
 					history.pushState('', document.title, window.location.pathname);
-					window.location.hash = "0=" + MODEL.graphic_two.showing  +  "&1a=" + MODEL.graphic_one.page   +  "&2a=" + MODEL.graphic_one.dataSet  +  "&3a=" + MODEL.graphic_one.dataPoint  +  "&4a=" +  MODEL.graphic_one.showBiggest + "&5a=" + MODEL.graphic_one.year  + "&1b=" + MODEL.graphic_two.page   +  "&2b=" + MODEL.graphic_two.dataSet  +  "&3b=" + MODEL.graphic_two.dataPoint  +  "&4b=" +  MODEL.graphic_two.showBiggest + "&5b=" + MODEL.graphic_two.year  ;				
+					window.location.hash = "0=" + MODEL.graphic_two.showing  +  "&1a=" + MODEL.graphic_one.page   +  "&2a=" + MODEL.graphic_one.dataSet  +  "&3a=" + (MODEL.graphic_one.dataPoint).replace(/ /g,'_')  +  "&4a=" +  MODEL.graphic_one.showBiggest + "&5a=" + MODEL.graphic_one.year  + "&1b=" + MODEL.graphic_two.page   +  "&2b=" + MODEL.graphic_two.dataSet  +  "&3b=" + (MODEL.graphic_two.dataPoint).replace(/ /g,'_')  +  "&4b=" +  MODEL.graphic_two.showBiggest + "&5b=" + MODEL.graphic_two.year  ;				
 				}					
 				
 				
@@ -2241,9 +2252,9 @@
                     if (data[passedMODEL['3b']]) {
                         // Languages
                         MODEL.graphic_two.dataPoint = passedMODEL['3b'];
-                    } else if(cityAbbreviation[(passedMODEL['3b']).replace(/ /g, "")] || cityAbbreviation[(passedMODEL['3b']).replace(/%20/g, "")]){
+                    } else if(cityAbbreviation[(passedMODEL['3b']).replace(/_/g, "").replace(/%5F/g, "")] ){
 						// Cities
-                        MODEL.graphic_two.dataPoint = passedMODEL['3b'].replace(/%20/g, " ");
+                        MODEL.graphic_two.dataPoint = passedMODEL['3b'].replace(/%5F/g, " ").replace(/_/g, " ").replace(/%5f/g, " ");
 					}			
 				}
 				if( passedMODEL['2a'] == 'Cities' || passedMODEL['2a'] == 'Languages'  ){
@@ -2252,9 +2263,9 @@
                     if (data[passedMODEL['3a']]) {
                         // Languages
                         MODEL.graphic_one.dataPoint = passedMODEL['3a'];
-                    } else if(cityAbbreviation[(passedMODEL['3a']).replace(/ /g, "")] || cityAbbreviation[(passedMODEL['3a']).replace(/%20/g, "")]){
+                    } else if(cityAbbreviation[(passedMODEL['3a']).replace(/_/g, "").replace(/%5F/g, "")] ){
 						// Cities
-                        MODEL.graphic_one.dataPoint = passedMODEL['3a'].replace(/%20/g, " ");
+                        MODEL.graphic_one.dataPoint = passedMODEL['3a'].replace(/%5F/g, " ").replace(/_/g, " ").replace(/%5f/g, " ");
 					}						
 				}					 
 															

@@ -20,7 +20,7 @@
 	        /* CSS reset */ * {
 	            margin: 0;
 	            padding: 0;
-	            font-size: 13pt;
+	            font-size: 12pt;
 	            font-weight: normal;
 	            width: 100%;
 	            list-style-type: none;
@@ -73,6 +73,10 @@
 	        .map svg {
 	            width: 100%;
 	        }
+			
+			tspan {
+	            font-size: 10pt;
+			}
 	        
 	        .copyright {
 	            padding-top: 15pt;
@@ -1467,7 +1471,7 @@
 								
 								maps[mapID].data[i].push({
 									"id": idx,
-									"area": (data[idx][cityAbbreviation[key]][years[i].slice(-2)]) * 100
+									"area": ((data[idx][cityAbbreviation[key]][years[i].slice(-2)]) * 100).toString().substring(0, 8)
 								});
 							});
 						}
@@ -1479,7 +1483,7 @@
 								//amount_of_balls = cityFullNames[idx] // id!
 								maps[mapID].data[i].push({
 									"id": cityFullNames[idx],
-									"area": (data[key][idx][years[i].slice(-2)]) * 100
+									"area": ((data[key][idx][years[i].slice(-2)]) * 100).toString().substring(0, 8)
 								});
 							});
 						}

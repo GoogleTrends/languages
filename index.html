@@ -620,10 +620,10 @@
                     margin: 0 1%;
                 }
 			}
-			 
-			@media (min-width: 765pt) {
+			
+			@media (min-width: 950pt) {
                 #content {
-                    width: 765pt;
+                    width: 950pt;
                 }
 			}
 
@@ -968,6 +968,7 @@
 				 *********************************************/
 								
                 window.onresize = function() {
+					pageHeights();
 					reset_scrubber();
 					updateMapSizes();
 					updateLandingImageSizes();
@@ -1067,10 +1068,15 @@
 				function updateLandingImageSize($canvas){
 					
 						if (!$canvas.parent().hasClass('hide')) {
-						
+						     
+							pageHeights();  
+							 
 							var id = ($canvas.attr('id')).toString();
 							var canvasWidth = $canvas.width();
-							var canvasHeight = $canvas.height();
+							var canvasHeight = $canvas.parent().height();
+							
+							//$canvas.css("height", canvasHeight);
+							
 							maps[id].paper.setSize('100%', '100%');
 							
 							var radius = canvasWidth;
@@ -1078,7 +1084,6 @@
 							if (radius > canvasHeight) {
 								radius = canvasHeight;
 							}
-							
 							
 							// bubbles resize
 							
@@ -1575,6 +1580,90 @@
 									
 				});
 				
+				
+                function pageHeights(){
+				
+				
+					var newHeight;
+					
+					var logoHieght = $('img.logo').height();
+					
+					var windowHieght = $(window).height()
+					
+					var f = $("#graphic_one").width() / $("#graphic_one").parent().width() * 100;
+					
+					if (MODEL.graphic_two.showing && f == 100) {
+						// stacked view
+						$('.map').css("height", "263pt");
+						
+						$('.scrollable_content').css("height", "318pt");
+						
+						
+					}
+					else {
+						// side by side view
+						
+						
+						$('.map').each(function(index){
+							var $map = $(this);
+							newHeight = windowHieght;
+							newHeight -= $map.position().top;
+							newHeight -= logoHieght;
+							newHeight -= $map.parent().find('div.scrollbar').height();
+							$map.css("height", newHeight);
+							
+							
+						});
+						
+						$('.scrollable_content').each(function(index){
+						
+							var $scrollable_content = $(this);
+							newHeight = windowHieght;
+							newHeight -= $scrollable_content.position().top;
+							newHeight -= logoHieght;
+							$scrollable_content.css("height", newHeight);
+						});
+												
+						
+					}
+					
+					
+                    $('.option').each(function(index){
+                    
+                        f = $(this).width() / $(".option").parent().parent().parent().width() * 100;
+                            var $option = $(this);
+                        
+                        if (f > 88) {
+                        
+                            $option.css("height", "100pt");
+                            $option.find('.landing_image').css("height", "100pt");
+                            $option.find('p').css("margin-top", "20pt");
+                            $option.find('.button').css("margin-top", "60pt");
+                            
+                        }
+                        else {
+                        
+                            newHeight = windowHieght;
+                            newHeight -= $option.position().top;
+                            newHeight -= logoHieght;
+                            $option.css("height", newHeight);
+                            $option.find('.landing_image').css("height", newHeight);
+                            $option.find('p').css("margin-top", "20pt");
+                            $option.find('.button').css("margin-top", "60pt");
+                            
+                            
+                        }
+                    });
+
+
+				}
+				
+					
+					
+					
+					
+				
+				
 
 				
 				function updateMapSizes(){
@@ -1588,8 +1677,10 @@
                 function updateMapSize($map){
                 
                     if (!$map.parent().hasClass('hide')) {
-                    
+						
                         var id = ($map.attr('id')).toString();
+											
+                    
                         var canvasWidth = $map.parent().width();
                         var canvasHeight = $map.height();
                         maps[id].paper.setSize('100%', '100%');
@@ -2017,6 +2108,7 @@
 						
 						reset_scrubber();
 						drawMap(mapID);
+						pageHeights();
 						updateMapSize(graphic_id.find(".map"));
 						
 						
@@ -2174,6 +2266,7 @@
 						
 						graphic_id.find(".navigation ol li:eq(0)" ).find('a').addClass("back_links");						
 						graphic_id.find(".pick_one_from_list").html(list);
+						pageHeights();
 						
 						
 					};
@@ -2181,6 +2274,7 @@
 					pageAnimation(trigger , graphicDOM, MODEL[graphic_id_from_controller].dataSet);					
 					
 					//setURL();
+					
 				}				
 				
 				
@@ -2197,15 +2291,23 @@
 				
 				function footerVIEW () {
 				
+					var f1 = $("#graphic_one").width() / $("#graphic_one").parent().width() * 100;
 				
-					var f = $("#graphic_one").width() / $("#graphic_one").parent().width() * 100;
-
-                    if ( MODEL.graphic_two.showing && f == 100  ) {
-                        //2
+					var f2 = $("#graphic_two").width() / $("#graphic_two").parent().width() * 100;
+				
+                    if ( MODEL.graphic_two.showing && ( f2 > 89 || f1 > 89)   ) {
+                        //stacked
 						$(".copyright *").css('margin-top','820pt');
-                    } else {
-						//1
-						$(".copyright *").css('margin-top','410pt');
+						/*
+                    } else if(MODEL.graphic_one.showing && f > 89){
+					
+						$(".copyright *").css('margin-top', ( $('#graphics').position().top + $('#graphics').position().height()   ));
+					*/
+					
+					} else {
+						//side by side									
+						
+						$(".copyright *").css('margin-top', ( $(window).height() - $(".copyright .logo").height() - $('#graphics').position().top ));
 					}	
 					
 					$(".copyright .logo").css('margin-top','0');
@@ -2350,7 +2452,6 @@
 
                             numberOfGraphicsVIEW();
                             setURL();
-							
 	                    }
 	                });	
                 

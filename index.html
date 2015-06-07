@@ -66,7 +66,7 @@
 	        }
 	        
 	        .map {
-	            height: 263pt;
+	            height: 233pt;
 	            width: 100%;
 	        }
 	        
@@ -269,6 +269,7 @@
 	            background: none;
 	            padding: 8pt 0;
 	            text-align: start;
+				margin-top:7pt;
 	        }
 	        
 	        .scrollable_content {
@@ -713,7 +714,8 @@
 						<!-- MAP -->
                         <div class="page_three hide">
                             <h3 class="call_to_action"></h3>
-                            <h4>2004</h4>							
+                            <h4>2004</h4>
+							<h5>Ranked by % of Google searches for each year.</h5>					
                             <div class="map_toggle">
                                 <span>Show largest:</span>
                                 <span class='toggle'>
@@ -809,6 +811,7 @@
                         <div class="page_three hide">		
                             <h3 class="call_to_action"></h3>
                             <h4>2004</h4>
+							<h5>Ranked by % of Google searches for each year.</h5>					
                             <div class="map_toggle">
                                 <span>Show largest:</span>
                                 <span class='toggle'>
@@ -1594,7 +1597,7 @@
 					
 					if (MODEL.graphic_two.showing && f == 100) {
 						// stacked view
-						$('.map').css("height", "263pt");
+						$('.map').css("height", "233pt");
 						
 						$('.scrollable_content').css("height", "318pt");
 						
@@ -2089,9 +2092,11 @@
 						if ( ( MODEL[graphic_id.attr('id')].dataSet ).replace(/Cities/g, '').length != ( MODEL[graphic_id.attr('id')].dataSet ).length ) {
 							graphic_id.find(".navigation ol li:eq(1)").html('<span> &raquo </span> <a> Cities</a>');
 							mapLocations = a;
+							graphic_id.find("h5").text("Languages ranked by % of Google searches in " + foo + " each year.");
 						} else {
 							graphic_id.find(".navigation ol li:eq(1)").html('<span> &raquo </span> <a> Languages</a>');
 							mapLocations = b;
+							graphic_id.find("h5").text("Cities ranked by % of Google searches in " + foo + " each year.");
 						}				
 						
 						

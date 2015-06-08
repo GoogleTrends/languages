@@ -33,7 +33,33 @@
 	            -ms-user-select: none;
 	            user-select: none;
 	        }
+			
+			textarea {
+	            -webkit-touch-callout: text;
+	            -webkit-user-select: text;
+	            -khtml-user-select: text;
+	            -moz-user-select: text;
+	            -ms-user-select: text;
+	            user-select: text;				
+			}
 	        
+			
+			#iframelightbox  {
+			}
+			
+			#iframelightbox div {
+				z-index:100;
+				margin:auto;
+				margin-top:100pt;
+				width:40%;
+	            background: white;
+			}
+			
+			#iframelightbox div textarea {
+				height:100pt;
+			}			
+			
+			
 	        .landing_image {
 	            background: white;
 	            height: 260pt;
@@ -636,6 +662,16 @@
         <div id="content">
         	<div id="loading">
         	</div>
+            <div id="iframelightbox" class='hide' style="position:absolute">
+                <div style="position:relative">
+                    <textarea onclick="this.focus();this.select()">
+                        &lt;iframe src="http://googletrends.github.io/languages/index.html" frameborder="0" width="900px" height="700px"&gt;&lt;/iframe&gt;
+                    </textarea>
+                    <button>
+                        DONE
+                    </button>
+                </div>
+            </div>
             <div id="global_controls" class="hide">
                 <div>
                     <span>View:</span>
@@ -649,7 +685,8 @@
                     <span><a class='facebook' href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank"><img src="facebook.png" alt='Facebook' ></a></span>
                     <span><a class='twitter' href="https://twitter.com/intent/tweet?text=Trending languages from 2004 to 2015 &url=" target="_blank"><img src="twitter.png" alt='Twitter' ></a></span>
                     <span><a class='google' href="https://plus.google.com/share?url=" target="_blank"><img src="google.png" alt='Google' ></a></span>
-                </div>
+                    <span><a class='iframe'><img src="iframe.png" alt='iframe' ></a></span>
+			    </div>
             </div>
 			
 			<div class='copyright hide'>
@@ -927,6 +964,9 @@
 				var $twitter = $('.twitter');
 				var $google = $('.google');
 				
+				
+				var $iframe = $('.iframe');
+				
 				var $facebookURL = $facebook.attr("href");
 				var $twitterURL = $twitter.attr("href");
 				var $googleURL = $google.attr("href");
@@ -987,6 +1027,14 @@
 				 * 
 				 *********************************************/				
 				
+				
+                $iframe.click(function(){
+                    $('#iframelightbox').show();
+                });
+                $('#iframelightbox button').click(function(){
+                    $('#iframelightbox').hide();
+                });			
+						
 				
                 $facebook.click(function(){
                     $facebook.attr("href", $facebookURL + (window.location.href).replace('#','%23').replace(/&/g,'%26').replace(/=/g,'%3D').replace(/_/g,'%5F').replace(/-/g,'%2D'));

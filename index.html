@@ -52,23 +52,60 @@
 	            user-select: text;				
 			}
 	        
-			
-			#iframelightbox  {
+			#iframelightbox h1 {
+				padding-bottom:7pt;
 			}
-			
+		
 			#iframelightbox div {
-				z-index:100;
+				z-index:100000;
 				margin:auto;
 				margin-top:100pt;
 				width:40%;
 	            background: white;
+				padding:10pt;
+				padding-bottom:20pt;
 			}
 			
 			#iframelightbox div textarea {
 				height:100pt;
-			}			
+				
+			}
 			
-			
+            #iframelightbox button {
+                margin-top: 14pt;
+	            cursor: pointer;
+                text-align: center;
+                vertical-align: middle;
+                text-transform: uppercase;
+                background: #000000;
+                background-image: -webkit-linear-gradient(top, #000000, #292929);
+              background-image: -moz-linear-gradient(top, #000000, #292929);
+              background-image: -ms-linear-gradient(top, #000000, #292929);
+              background-image: -o-linear-gradient(top, #000000, #292929);
+              background-image: linear-gradient(to bottom, #000000, #292929);
+              -webkit-border-radius: 2;
+              -moz-border-radius: 2;
+              border-radius: 2px;
+              font-family: Arial;
+              color: #ffffff;
+              font-size: 13px;
+              padding: 10px 20px 10px 20px;
+              text-decoration: none;
+              border: none;
+              width:40%;
+				margin-left:30%;
+            }
+            
+            #iframelightbox  button:hover {
+              background: #8a8a8a;
+              background-image: -webkit-linear-gradient(top, #8a8a8a, #696969);
+              background-image: -moz-linear-gradient(top, #8a8a8a, #696969);
+              background-image: -ms-linear-gradient(top, #8a8a8a, #696969);
+              background-image: -o-linear-gradient(top, #8a8a8a, #696969);
+              background-image: linear-gradient(to bottom, #8a8a8a, #696969);
+              text-decoration: none;
+            }
+            			
 	        .landing_image {
 	            background: white;
 	            height: 260pt;
@@ -538,6 +575,18 @@
 	        div.page_three {
 	            padding-top: 10pt;
 	        }
+			
+			#iframelightboxBackground {
+				position:absolute;
+				height:100%;
+				width:100%;
+				background:#000;
+				z-index: 1000; 
+                opacity: 0.4;
+                filter:  alpha(opacity = 40); /* For IE8 and earlier */
+
+			}
+			
             
 			/* switching from mobile to desktop*/ 
 			@media (min-width: 0) {
@@ -702,21 +751,25 @@
 		
     </head>
     <body>
-    	
-		<div id='hover' class='hide'></div>
-        <div id="content">
-        	<div id="loading">
-        	</div>
             <div id="iframelightbox" class='hide' style="position:absolute">
                 <div style="position:relative">
+                	<h1  class="call_to_action">iframe code</h1>
                     <textarea onclick="this.focus();this.select()">
                         &lt;iframe src="http://googletrends.github.io/languages/index.html" frameborder="0" width="900px" height="700px"&gt;&lt;/iframe&gt;
                     </textarea>
                     <button>
-                        DONE
+                        Close
                     </button>
                 </div>
             </div>
+            <div id="iframelightboxBackground" class='hide'>
+            	 </div>		
+		
+		<div id='hover' class='hide'></div>
+        <div id="content">
+        	<div id="loading">
+        	</div>
+
             <div id="global_controls" class="hide">
                 <div>
                     <span>View:</span>
@@ -1078,12 +1131,17 @@
 				
                 $iframe.click(function(){
                     $('#iframelightbox').show();
+					$('#iframelightboxBackground').show();
                 });
                 $('#iframelightbox button').click(function(){
                     $('#iframelightbox').hide();
+					$('#iframelightboxBackground').hide();
                 });			
-						
-				
+                $('#iframelightboxBackground').click(function(){
+                    $('#iframelightbox').hide();
+					$('#iframelightboxBackground').hide();
+                });	
+								
                 $facebook.click(function(){
                     $facebook.attr("href", $facebookURL + (window.location.href).replace('#','%23').replace(/&/g,'%26').replace(/=/g,'%3D').replace(/_/g,'%5F').replace(/-/g,'%2D'));
                 });
@@ -2523,7 +2581,7 @@
 			                $('#graphics').removeClass("hide");
 							$('.copyright').removeClass("hide");
 							
-							$('.copyright').css("z-index",100000000);							
+							$('.copyright').css("z-index",100);							
 										
                             $("#graphics").animate({
                                 "opacity": "1"

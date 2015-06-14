@@ -1618,7 +1618,8 @@
                     
                     maps[mapID].centerBubble = maps[mapID].paper.circle(maps[mapID].bigCX, maps[mapID].bigCY, 0).attr({
                         "fill": "#f1f0f0",
-                        "fill-opacity": 1,
+						"stroke": "#fff",
+						"fill-opacity": 1,
                         "stroke-width": 0
                     });
                     
@@ -1633,6 +1634,7 @@
                         
                         maps[mapID].bubbles.push(maps[mapID].paper.circle(maps[mapID].bigCX, maps[mapID].bigCY, 0).attr({
                             "fill": colours[RandomNumber()],
+							"stroke": "#fff",
                             "fill-opacity": 0.4,
                             "stroke-width": 0
                         }));

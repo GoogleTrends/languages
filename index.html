@@ -1131,7 +1131,7 @@
 				
                 $iframe.click(function(){
                     $('#iframelightbox').show();
-					$('#iframelightboxBackground').show();
+					$('#iframelightboxBackground').stop().fadeIn();
                 });
                 $('#iframelightbox button').click(function(){
                     $('#iframelightbox').hide();

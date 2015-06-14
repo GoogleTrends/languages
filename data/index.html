@@ -1,0 +1,1336 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <title>Making data for language data visualisation</title>
+    </head>
+    <body>
+    </body>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js">
+    </script>
+    <script>
+        
+        
+        
+        
+        var a = [];
+        
+        a.push({
+            "language": "German",
+            "native_abbreviation": "de",
+            "country": "Germany",
+            "latitude": 51.165691,
+            "longitude": 10.451526
+        });
+        a.push({
+            "language": "English",
+            "native_abbreviation": "en",
+            "country": "England",
+            "latitude": 52.355518,
+            "longitude": -1.17432
+        });
+        a.push({
+            "language": "French",
+            "native_native_abbreviation": "fr",
+            "country": "France",
+            "latitude": 46.227638,
+            "longitude": 2.213749
+        });
+        a.push({
+            "language": "Spanish",
+            "native_abbreviation": "es",
+            "country": "Spain",
+            "latitude": 40.463667,
+            "longitude": -3.74922
+        });
+        a.push({
+            "language": "Chinese",
+            "native_abbreviation": "zh",
+            "country": "China",
+            "latitude": 35.86166,
+            "longitude": 104.195397
+        });
+        a.push({
+            "language": "Polish",
+            "native_abbreviation": "pl",
+            "country": "Poland",
+            "latitude": 51.919438,
+            "longitude": 19.145136
+        });
+        a.push({
+            "language": "Italian",
+            "native_abbreviation": "it",
+            "country": "Italy",
+            "latitude": 41.87194,
+            "longitude": 12.56738
+        });
+        a.push({
+            "language": "Russian",
+            "native_abbreviation": "ru",
+            "country": "Russia",
+            "latitude": 61.52401,
+            "longitude": 105.318756
+        });
+        a.push({
+            "language": "Dutch",
+            "native_abbreviation": "nl",
+            "country": "Netherlands",
+            "latitude": 52.132633,
+            "longitude": 5.291266
+        });
+        a.push({
+            "language": "Japanese",
+            "native_abbreviation": "ja",
+            "country": "Japan",
+            "latitude": 36.204824,
+            "longitude": 138.252924
+        });
+        a.push({
+            "language": "Turkish",
+            "native_abbreviation": "tr",
+            "country": "Turkey",
+            "latitude": 38.963745,
+            "longitude": 35.243322
+        });
+        a.push({
+            "language": "Portuguese",
+            "native_abbreviation": "pt",
+            "country": "Portugal",
+            "latitude": 39.399872,
+            "longitude": -8.224454
+        });
+        a.push({
+            "language": "Swedish",
+            "native_abbreviation": "sv",
+            "country": "Sweden",
+            "latitude": 60.128161,
+            "longitude": 18.643501
+        });
+        a.push({
+            "language": "Korean",
+            "native_abbreviation": "ko",
+            "country": "Korea",
+            "latitude": 38.172154,
+            "longitude": 126.96904
+        });
+        a.push({
+            "language": "Danish",
+            "native_abbreviation": "da",
+            "country": "Denmark",
+            "latitude": 56.26392,
+            "longitude": 9.501785
+        });
+        a.push({
+            "language": "Hungarian",
+            "native_abbreviation": "hu",
+            "country": "Hungary",
+            "latitude": 47.162494,
+            "longitude": 19.503304
+        });
+        a.push({
+            "language": "Arabic",
+            "native_abbreviation": "ar",
+            "country": "The United Arab Emirates",
+            "latitude": 23.424076,
+            "longitude": 53.847818
+        });
+        a.push({
+            "language": "Finnish",
+            "native_abbreviation": "fi",
+            "country": "Finland",
+            "latitude": 61.92411,
+            "longitude": 25.748151
+        });
+        a.push({
+            "language": "Romanian",
+            "native_abbreviation": "ro",
+            "country": "Romania",
+            "latitude": 45.943161,
+            "longitude": 24.96676
+        });
+        a.push({
+            "language": "Greek",
+            "native_abbreviation": "el",
+            "country": "Greece",
+            "latitude": 39.074208,
+            "longitude": 21.824312
+        });
+        a.push({
+            "language": "Hebrew",
+            "native_abbreviation": "he",
+            "country": "Israel",
+            "latitude": 31.046051,
+            "longitude": 34.851612
+        });
+        a.push({
+            "language": "Norwegian",
+            "native_abbreviation": "no",
+            "country": "Norway",
+            "latitude": 60.472024,
+            "longitude": 8.468946
+        });
+        a.push({
+            "language": "Thai",
+            "native_abbreviation": "th",
+            "country": "Thailand",
+            "latitude": 15.870032,
+            "longitude": 100.992541
+        });
+        a.push({
+            "language": "Bulgarian",
+            "native_abbreviation": "bg",
+            "country": "Bulgaria",
+            "latitude": 42.733883,
+            "longitude": 25.48583
+        });
+        a.push({
+            "language": "Lithuanian",
+            "native_abbreviation": "lt",
+            "country": "Lithuania",
+            "latitude": 55.169438,
+            "longitude": 23.881275
+        });
+        a.push({
+            "language": "Vietnamese",
+            "native_abbreviation": "vi",
+            "country": "Vietnam",
+            "latitude": 14.058324,
+            "longitude": 108.277199
+        });
+        a.push({
+            "language": "Persian",
+            "native_abbreviation": "fa",
+            "country": "Persia",
+            "latitude": 32.427908,
+            "longitude": 53.688046
+        });
+        a.push({
+            "language": "Slovak",
+            "native_abbreviation": "sk",
+            "country": "Slovakia",
+            "latitude": 48.669026,
+            "longitude": 19.699024
+        });
+        a.push({
+            "language": "Croatian",
+            "native_abbreviation": "hr",
+            "country": "Croatia",
+            "latitude": 45.1,
+            "longitude": 15.2
+        });
+        a.push({
+            "language": "Czech",
+            "native_abbreviation": "cs",
+            "country": "Czech Republic",
+            "latitude": 49.817492,
+            "longitude": 15.472962
+        });
+        a.push({
+            "language": "Latvian",
+            "native_abbreviation": "lv",
+            "country": "Latvia",
+            "latitude": 56.879635,
+            "longitude": 24.603189
+        });
+        a.push({
+            "language": "Slovenian",
+            "native_abbreviation": "",
+            "country": "Slovenia",
+            "latitude": 46.151241,
+            "longitude": 14.995463
+        });
+        a.push({
+            "language": "Catalan",
+            "native_abbreviation": "ca",
+            "country": "Catalonia",
+            "latitude": 41.591159,
+            "longitude": 1.520862
+        });
+        a.push({
+            "language": "Ukrainian",
+            "native_abbreviation": "uk",
+            "country": "Ukraine",
+            "latitude": 48.379433,
+            "longitude": 31.16558
+        });
+        a.push({
+            "language": "Estonian",
+            "native_abbreviation": "et",
+            "country": "Estonia",
+            "latitude": 58.595272,
+            "longitude": 25.013607
+        });
+        a.push({
+            "language": "Indonesian",
+            "native_abbreviation": "id",
+            "country": "Indonesia",
+            "latitude": -0.789275,
+            "longitude": 113.921327
+        });
+        a.push({
+            "language": "Albanian",
+            "native_abbreviation": "sq",
+            "country": "Albania",
+            "latitude": 41.153332,
+            "longitude": 20.168331
+        });
+        a.push({
+            "language": "Esperanto",
+            "native_abbreviation": "eo",
+            "country": "Poland",
+            "latitude": 51.919438,
+            "longitude": 19.145136
+        });
+        a.push({
+            "language": "Latin",
+            "native_abbreviation": "la",
+            "country": "Italy",
+            "latitude": 41.87194,
+            "longitude": 12.56738
+        });
+        a.push({
+            "language": "Bosnian",
+            "native_abbreviation": "bs",
+            "country": "Bosnia and Herzegovina",
+            "latitude": 43.915886,
+            "longitude": 17.679076
+        });
+        a.push({
+            "language": "Faroese",
+            "native_abbreviation": "fo",
+            "country": "Faroe Islands",
+            "latitude": 61.892635,
+            "longitude": -6.911806
+        });
+        a.push({
+            "language": "Icelandic",
+            "native_abbreviation": "is",
+            "country": "Iceland",
+            "latitude": 64.963051,
+            "longitude": -19.020835
+        });
+        a.push({
+            "language": "Afrikaans",
+            "native_abbreviation": "af",
+            "country": "South Africa",
+            "latitude": -30.559482,
+            "longitude": 22.937506
+        });
+        a.push({
+            "language": "Basque",
+            "native_abbreviation": "eu",
+            "country": "Spain",
+            "latitude": 40.463667,
+            "longitude": -3.74922
+        });
+        a.push({
+            "language": "Serbian",
+            "native_abbreviation": "sr",
+            "country": "Serbia",
+            "latitude": 44.016521,
+            "longitude": 21.005859
+        });
+        a.push({
+            "language": "Maltese",
+            "native_abbreviation": "mt",
+            "country": "Malta",
+            "latitude": 35.937496,
+            "longitude": 14.375416
+        });
+        a.push({
+            "language": "Telugu",
+            "native_abbreviation": "te",
+            "country": "India",
+            "latitude": 20.593684,
+            "longitude": 78.96288
+        });
+        a.push({
+            "language": "Hindi",
+            "native_abbreviation": "hi",
+            "country": "Fiji",
+            "latitude": -16.578193,
+            "longitude": 179.414413
+        });
+        a.push({
+            "language": "Macedonian",
+            "native_abbreviation": "mk",
+            "country": "Macedonia",
+            "latitude": 41.608635,
+            "longitude": 21.745275
+        });
+        a.push({
+            "language": "Welsh",
+            "native_abbreviation": "cy",
+            "country": "Wales",
+            "latitude": 52.130661,
+            "longitude": -3.783712
+        });
+        a.push({
+            "language": "Belarusian",
+            "native_abbreviation": "be",
+            "country": "Belarus",
+            "latitude": 53.709807,
+            "longitude": 27.953389
+        });
+        a.push({
+            "language": "Amharic",
+            "native_abbreviation": "am",
+            "country": "Ethiopia",
+            "latitude": 9.145,
+            "longitude": 40.489673
+        });
+        a.push({
+            "language": "Swahili",
+            "native_abbreviation": "sw",
+            "country": "Tanzania",
+            "latitude": -6.369028,
+            "longitude": 34.88882
+        });
+        a.push({
+            "language": "Georgian",
+            "native_abbreviation": "ka",
+            "country": "Georgia",
+            "latitude": 42.315407,
+            "longitude": 43.356892
+        });
+        a.push({
+            "language": "Uzbek",
+            "native_abbreviation": "uz",
+            "country": "Uzbekistan",
+            "latitude": 41.377491,
+            "longitude": 64.585262
+        });
+        a.push({
+            "language": "Tagalog",
+            "native_abbreviation": "tl",
+            "country": "Philippines",
+            "latitude": 12.879721,
+            "longitude": 121.774017
+        });
+        a.push({
+            "language": "Tamil",
+            "native_abbreviation": "ta",
+            "country": "Sri Lanka",
+            "latitude": 7.873054,
+            "longitude": 80.771797
+        });
+        a.push({
+            "language": "Galician",
+            "native_abbreviation": "gl",
+            "country": "Spain",
+            "latitude": 40.463667,
+            "longitude": -3.74922
+        });
+        a.push({
+            "language": "Interlingua",
+            "native_abbreviation": "ia",
+            "country": "Bolivia",
+            "latitude": -16.290154,
+            "longitude": -63.588653
+        });
+        a.push({
+            "language": "Azerbaijani",
+            "native_abbreviation": "az",
+            "country": "Azerbaijan",
+            "latitude": 40.143105,
+            "longitude": 47.576927
+        });
+        a.push({
+            "language": "Guarani",
+            "native_abbreviation": "",
+            "country": "Brazil",
+            "latitude": -14.235004,
+            "longitude": -51.92528
+        });
+        a.push({
+            "language": "Malayalam",
+            "native_abbreviation": "ml",
+            "country": "India",
+            "latitude": 20.593684,
+            "longitude": 78.96288
+        });
+        a.push({
+            "language": "Marathi",
+            "native_abbreviation": "mr",
+            "country": "India",
+            "latitude": 20.593684,
+            "longitude": 78.96288
+        });
+        a.push({
+            "language": "Punjabi",
+            "native_abbreviation": "",
+            "country": "Pakistan",
+            "latitude": 30.375321,
+            "longitude": 69.345116
+        });
+        a.push({
+            "language": "Serbo-Croatian",
+            "native_abbreviation": "",
+            "country": "Croatia",
+            "latitude": 45.1,
+            "longitude": 15.2
+        });
+        a.push({
+            "language": "Norwegian-N",
+            "native_abbreviation": "",
+            "country": "Norway",
+            "latitude": 60.472024,
+            "longitude": 8.468946
+        });
+        a.push({
+            "language": "Malay",
+            "native_abbreviation": "ms",
+            "country": "Indonesia",
+            "latitude": -0.789275,
+            "longitude": 113.921327
+        });
+        a.push({
+            "language": "Irish",
+            "native_abbreviation": "ga",
+            "country": "Northern Ireland",
+            "latitude": 54.787715,
+            "longitude": -6.492315
+        });
+        a.push({
+            "language": "Armenian",
+            "native_abbreviation": "hy",
+            "country": "Armenia",
+            "latitude": 40.069099,
+            "longitude": 45.038189
+        });
+        a.push({
+            "language": "Kurdish",
+            "native_abbreviation": "ku",
+            "country": "Iraq",
+            "latitude": 33.223191,
+            "longitude": 43.679291
+        });
+        a.push({
+            "language": "Somali",
+            "native_abbreviation": "so",
+            "country": "Somalia",
+            "latitude": 5.152149,
+            "longitude": 46.199616
+        });
+        a.push({
+            "language": "Scots-Gaelic",
+            "native_abbreviation": "",
+            "country": "Scotland",
+            "latitude": 56.490671,
+            "longitude": -4.202646
+        });
+        a.push({
+            "language": "Mongolian",
+            "native_abbreviation": "mn",
+            "country": "Tibet",
+            "latitude": 29.646923,
+            "longitude": 91.117212
+        });
+        a.push({
+            "language": "Pashto",
+            "native_abbreviation": "",
+            "country": "Iran",
+            "latitude": 32.427908,
+            "longitude": 53.688046
+        });
+        a.push({
+            "language": "Occitan",
+            "native_abbreviation": "oc",
+            "country": "Catalonia",
+            "latitude": 41.591159,
+            "longitude": 1.520862
+        });
+        a.push({
+            "language": "Laothian",
+            "native_abbreviation": "",
+            "country": "Laos",
+            "latitude": 19.85627,
+            "longitude": 102.495496
+        });
+        a.push({
+            "language": "Rhaeto-Romance",
+            "native_abbreviation": "",
+            "country": "Switzerland",
+            "latitude": 46.818188,
+            "longitude": 8.227512
+        });
+        a.push({
+            "language": "Breton",
+            "native_abbreviation": "br",
+            "country": "England",
+            "latitude": 52.355518,
+            "longitude": -1.17432
+        });
+        a.push({
+            "language": "Khmer",
+            "native_abbreviation": "km",
+            "country": "Cambodia",
+            "latitude": 12.565679,
+            "longitude": 104.990963
+        });
+        a.push({
+            "language": "Xhosa",
+            "native_abbreviation": "xh",
+            "country": "South Africa",
+            "latitude": -30.559482,
+            "longitude": 22.937506
+        });
+        a.push({
+            "language": "Tonga",
+            "native_abbreviation": "to",
+            "country": "Tonga",
+            "latitude": -21.178986,
+            "longitude": -175.198242
+        });
+        a.push({
+            "language": "Tajik",
+            "native_abbreviation": "tg",
+            "country": "Tajikistan",
+            "latitude": 38.861034,
+            "longitude": 71.276093
+        });
+        a.push({
+            "language": "Uighur",
+            "native_abbreviation": "",
+            "country": "Turkey",
+            "latitude": 38.963745,
+            "longitude": 35.243322
+        });
+        a.push({
+            "language": "Quechua",
+            "native_abbreviation": "qu",
+            "country": "Argentina",
+            "latitude": -38.416097,
+            "longitude": -63.616672
+        });
+        a.push({
+            "language": "Lingala",
+            "native_abbreviation": "ln",
+            "country": "Republic of the Congo",
+            "latitude": -0.228021,
+            "longitude": 15.827659
+        });
+        a.push({
+            "language": "Urdu",
+            "native_abbreviation": "ur",
+            "country": "Pakistan",
+            "latitude": 30.375321,
+            "longitude": 69.345116
+        });
+        a.push({
+            "language": "Twi",
+            "native_abbreviation": "tw",
+            "country": "Ghana",
+            "latitude": 7.946527,
+            "longitude": -1.023194
+        });
+        a.push({
+            "language": "Corsican",
+            "native_abbreviation": "co",
+            "country": "Corsica",
+            "latitude": 42.039604,
+            "longitude": 9.012893
+        });
+        a.push({
+            "language": "Yoruba",
+            "native_abbreviation": "yo",
+            "country": "Nigeria",
+            "latitude": 9.081999,
+            "longitude": 8.675277
+        });
+        a.push({
+            "language": "Tatar",
+            "native_abbreviation": "tt",
+            "country": "Russia",
+            "latitude": 61.52401,
+            "longitude": 105.318756
+        });
+        a.push({
+            "language": "Gujarati",
+            "native_abbreviation": "gu",
+            "country": "India",
+            "latitude": 20.593684,
+            "longitude": 78.96288
+        });
+        a.push({
+            "language": "Tigrinya",
+            "native_abbreviation": "ti",
+            "country": "Ethiopia",
+            "latitude": 9.145,
+            "longitude": 40.489673
+        });
+        a.push({
+            "language": "Sinhalese",
+            "native_abbreviation": "",
+            "country": "Sri Lanka",
+            "latitude": 7.873054,
+            "longitude": 80.771797
+        });
+        a.push({
+            "language": "Bengali",
+            "native_abbreviation": "",
+            "country": "India",
+            "latitude": 20.593684,
+            "longitude": 78.96288
+        });
+        a.push({
+            "language": "Yiddish",
+            "native_abbreviation": "yi",
+            "country": "Israel",
+            "latitude": 31.046051,
+            "longitude": 34.851612
+        });
+        a.push({
+            "language": "Nepali",
+            "native_abbreviation": "ne",
+            "country": "Nepal",
+            "latitude": 28.394857,
+            "longitude": 84.124008
+        });
+        a.push({
+            "language": "Javanese",
+            "native_abbreviation": "jv",
+            "country": "Java",
+            "latitude": -7.614529,
+            "longitude": 110.712246
+        });
+        a.push({
+            "language": "Ganda",
+            "native_abbreviation": "lg",
+            "country": "Uganda",
+            "latitude": 1.373333,
+            "longitude": 32.290275
+        });
+        a.push({
+            "language": "Frisian",
+            "native_abbreviation": "",
+            "country": "Netherlands",
+            "latitude": 52.132633,
+            "longitude": 5.291266
+        });
+        a.push({
+            "language": "Kannada",
+            "native_abbreviation": "kn",
+            "country": "India",
+            "latitude": 20.593684,
+            "longitude": 78.96288
+        });
+        a.push({
+            "language": "Moldavian",
+            "native_abbreviation": "",
+            "country": "Moldova",
+            "latitude": 47.411631,
+            "longitude": 28.369885
+        });
+        a.push({
+            "language": "Kazakh",
+            "native_abbreviation": "kk",
+            "country": "Kazakhstan",
+            "latitude": 48.019573,
+            "longitude": 66.923684
+        });
+        a.push({
+            "language": "Wolof",
+            "native_abbreviation": "wo",
+            "country": "Senegal",
+            "latitude": 14.497401,
+            "longitude": -14.452362
+        });
+        a.push({
+            "language": "Portuguese-B",
+            "native_abbreviation": "",
+            "country": "Portugal",
+            "latitude": 39.399872,
+            "longitude": -8.224454
+        });
+        a.push({
+            "language": "Portuguese-P",
+            "native_abbreviation": "",
+            "country": "Portugal",
+            "latitude": 39.399872,
+            "longitude": -8.224454
+        });
+        a.push({
+            "language": "Chineset",
+            "native_abbreviation": "",
+            "country": "China",
+            "latitude": 35.86166,
+            "longitude": 104.195397
+        });
+        a.push({
+            "language": "Montenegrin",
+            "native_abbreviation": "",
+            "country": "Croatia",
+            "latitude": 45.1,
+            "longitude": 15.2
+        });
+        a.push({
+            "language": "Maori",
+            "native_abbreviation": "mi",
+            "country": "New Zealand",
+            "latitude": -40.900557,
+            "longitude": 174.885971
+        });
+        a.push({
+            "language": "Zulu",
+            "native_abbreviation": "zu",
+            "country": "South Africa",
+            "latitude": -30.559482,
+            "longitude": 22.937506
+        });
+        a.push({
+            "language": "Hausa",
+            "native_abbreviation": "ha",
+            "country": "Chad",
+            "latitude": 15.454166,
+            "longitude": 18.732207
+        });
+        a.push({
+            "language": "Tswana",
+            "native_abbreviation": "tn",
+            "country": "Botswana",
+            "latitude": -22.328474,
+            "longitude": 24.684866
+        });
+        a.push({
+            "language": "Pedi",
+            "native_abbreviation": "",
+            "country": "South Africa",
+            "latitude": -30.559482,
+            "longitude": 22.937506
+        });
+        a.push({
+            "language": "Akan",
+            "native_abbreviation": "ak",
+            "country": "Ivory Coast",
+            "latitude": 7.539989,
+            "longitude": -5.54708
+        });
+        a.push({
+            "language": "Cebuano",
+            "native_abbreviation": "",
+            "country": "Philippines",
+            "latitude": 12.879721,
+            "longitude": 121.774017
+        });
+        a.push({
+            "language": "Sanskrit",
+            "native_abbreviation": "sa",
+            "country": "India",
+            "latitude": 20.593684,
+            "longitude": 78.96288
+        });
+        a.push({
+            "language": "Ewe",
+            "native_abbreviation": "ee",
+            "country": "Togo",
+            "latitude": 8.619543,
+            "longitude": 0.824782
+        });
+        a.push({
+            "language": "Bihari",
+            "native_abbreviation": "bh",
+            "country": "India",
+            "latitude": 20.593684,
+            "longitude": 78.96288
+        });
+        a.push({
+            "language": "Oriya",
+            "native_abbreviation": "or",
+            "country": "India",
+            "latitude": 20.593684,
+            "longitude": 78.96288
+        });
+        a.push({
+            "language": "Interlingue",
+            "native_abbreviation": "ie",
+            "country": "Germany",
+            "latitude": 51.165691,
+            "longitude": 10.451526
+        });
+        a.push({
+            "language": "Kyrgyz",
+            "native_abbreviation": "ky",
+            "country": "Kyrgyzstan",
+            "latitude": 41.20438,
+            "longitude": 74.766098
+        });
+        a.push({
+            "language": "Shona",
+            "native_abbreviation": "sn",
+            "country": "Zimbabwe",
+            "latitude": -19.015438,
+            "longitude": 29.154857
+        });
+        a.push({
+            "language": "Turkmen",
+            "native_abbreviation": "tk",
+            "country": "Turkmenistan",
+            "latitude": 38.969719,
+            "longitude": 59.556278
+        });
+        a.push({
+            "language": "Igbo",
+            "native_abbreviation": "ig",
+            "country": "Nigeria",
+            "latitude": 9.081999,
+            "longitude": 8.675277
+        });
+        a.push({
+            "language": "Sundanese",
+            "native_abbreviation": "su",
+            "country": "Java",
+            "latitude": -7.614529,
+            "longitude": 110.712246
+        });
+        a.push({
+            "language": "Malagasy",
+            "native_abbreviation": "mg",
+            "country": "Madagascar",
+            "latitude": -18.766947,
+            "longitude": 46.869107
+        });
+        a.push({
+            "language": "Oromo",
+            "native_abbreviation": "om",
+            "country": "Ethiopia",
+            "latitude": 9.145,
+            "longitude": 40.489673
+        });
+        a.push({
+            "language": "Sesotho",
+            "native_abbreviation": "",
+            "country": "South Africa",
+            "latitude": -30.559482,
+            "longitude": 22.937506
+        });
+        a.push({
+            "language": "Rundi",
+            "native_abbreviation": "",
+            "country": "Burundi",
+            "latitude": -3.373056,
+            "longitude": 29.918886
+        });
+		/*
+        a.push({
+            "language": "Assamese",
+            "native_abbreviation": "as",
+            "country": "India",
+            "latitude": 20.593684,
+            "longitude": 78.96288
+        });
+        */
+        a.push({
+            "language": "Burmese",
+            "native_abbreviation": "my",
+            "country": "Myanmar",
+            "latitude": 21.913965,
+            "longitude": 95.956223
+        });
+        a.push({
+            "language": "Nyanja",
+            "native_abbreviation": "",
+            "country": "Botswana",
+            "latitude": -22.328474,
+            "longitude": 24.684866
+        });
+        a.push({
+            "language": "Mauritian-Creole",
+            "native_abbreviation": "",
+            "country": "Mauritius",
+            "latitude": -20.348404,
+            "longitude": 57.552152
+        });
+        a.push({
+            "language": "Haitian-Creole",
+            "native_abbreviation": "",
+            "country": "Haiti",
+            "latitude": 18.971187,
+            "longitude": -72.285215
+        });
+        a.push({
+            "language": "Seselwa-Creole-French",
+            "native_abbreviation": "",
+            "country": "Seychelles",
+            "latitude": -4.679574,
+            "longitude": 55.491977
+        });
+		/*
+        a.push({
+            "language": "Hawaiian",
+            "native_abbreviation": "",
+            "country": "Hawaii",
+            "latitude": 19.896766,
+            "longitude": -155.582782
+        });
+        */
+        a.push({
+            "language": "Sindhi",
+            "native_abbreviation": "sd",
+            "country": "Pakistan",
+            "latitude": 30.375321,
+            "longitude": 69.345116
+        });
+        a.push({
+            "language": "Ga",
+            "native_abbreviation": "",
+            "country": "Ghana",
+            "latitude": 7.946527,
+            "longitude": -1.023194
+        });
+        a.push({
+            "language": "Krio",
+            "native_abbreviation": "",
+            "country": "Sierra Leone",
+            "latitude": 8.460555,
+            "longitude": -11.779889
+        });
+        a.push({
+            "language": "Kinyarwanda",
+            "native_abbreviation": "rw",
+            "country": "Rwanda",
+            "latitude": -1.940278,
+            "longitude": 29.873888
+        });
+		/*
+        a.push({
+            "language": "Lozi",
+            "native_abbreviation": "",
+            "country": "Zambia",
+            "latitude": -13.133897,
+            "longitude": 27.849332
+        });
+        */
+        
+		
+
+var sort_by = function(field, reverse, primer){
+
+   var key = primer ? 
+       function(x) {return primer(x[field])} : 
+       function(x) {return x[field]};
+
+   reverse = !reverse ? 1 : -1;
+
+   return function (a, b) {
+       return a = key(a), b = key(b), reverse * ((a > b) - (b > a));
+     } 
+}
+
+
+
+		
+		a.sort(sort_by('language', false, function(a){return a.toUpperCase()}));
+		
+		
+        
+        var reformattingData = {};
+        
+        var years = {
+            "04": 0,
+            "05": 0,
+            "06": 0,
+            "07": 0,
+            "08": 0,
+            "09": 0,
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0
+        };
+        
+        for (var i = 0; i < a.length; i++) {
+        
+            reformattingData[(a[i].language)] = {
+                "SP": {
+                    "04": 0,
+                    "05": 0,
+                    "06": 0,
+                    "07": 0,
+                    "08": 0,
+                    "09": 0,
+                    "10": 0,
+                    "11": 0,
+                    "12": 0,
+                    "13": 0,
+                    "14": 0,
+                    "15": 0
+                },
+                "DEL": {
+                    "04": 0,
+                    "05": 0,
+                    "06": 0,
+                    "07": 0,
+                    "08": 0,
+                    "09": 0,
+                    "10": 0,
+                    "11": 0,
+                    "12": 0,
+                    "13": 0,
+                    "14": 0,
+                    "15": 0
+                },
+                "SHA": {
+                    "04": 0,
+                    "05": 0,
+                    "06": 0,
+                    "07": 0,
+                    "08": 0,
+                    "09": 0,
+                    "10": 0,
+                    "11": 0,
+                    "12": 0,
+                    "13": 0,
+                    "14": 0,
+                    "15": 0
+                },
+                "MAD": {
+                    "04": 0,
+                    "05": 0,
+                    "06": 0,
+                    "07": 0,
+                    "08": 0,
+                    "09": 0,
+                    "10": 0,
+                    "11": 0,
+                    "12": 0,
+                    "13": 0,
+                    "14": 0,
+                    "15": 0
+                },
+                "TOR": {
+                    "04": 0,
+                    "05": 0,
+                    "06": 0,
+                    "07": 0,
+                    "08": 0,
+                    "09": 0,
+                    "10": 0,
+                    "11": 0,
+                    "12": 0,
+                    "13": 0,
+                    "14": 0,
+                    "15": 0
+                },
+                "LON": {
+                    "04": 0,
+                    "05": 0,
+                    "06": 0,
+                    "07": 0,
+                    "08": 0,
+                    "09": 0,
+                    "10": 0,
+                    "11": 0,
+                    "12": 0,
+                    "13": 0,
+                    "14": 0,
+                    "15": 0
+                },
+                "TOK": {
+                    "04": 0,
+                    "05": 0,
+                    "06": 0,
+                    "07": 0,
+                    "08": 0,
+                    "09": 0,
+                    "10": 0,
+                    "11": 0,
+                    "12": 0,
+                    "13": 0,
+                    "14": 0,
+                    "15": 0
+                },
+                "NYC": {
+                    "04": 0,
+                    "05": 0,
+                    "06": 0,
+                    "07": 0,
+                    "08": 0,
+                    "09": 0,
+                    "10": 0,
+                    "11": 0,
+                    "12": 0,
+                    "13": 0,
+                    "14": 0,
+                    "15": 0
+                },
+                "PAR": {
+                    "04": 0,
+                    "05": 0,
+                    "06": 0,
+                    "07": 0,
+                    "08": 0,
+                    "09": 0,
+                    "10": 0,
+                    "11": 0,
+                    "12": 0,
+                    "13": 0,
+                    "14": 0,
+                    "15": 0
+                },
+                "BER": {
+                    "04": 0,
+                    "05": 0,
+                    "06": 0,
+                    "07": 0,
+                    "08": 0,
+                    "09": 0,
+                    "10": 0,
+                    "11": 0,
+                    "12": 0,
+                    "13": 0,
+                    "14": 0,
+                    "15": 0
+                }
+            };
+        }
+        
+        
+        
+        
+        
+        var cityAbbreviation = [];
+        
+        cityAbbreviation['Sao Paulo'] = "SP";
+        cityAbbreviation['Delhi'] = "DEL";
+        cityAbbreviation['Shanghai'] = "SHA";
+        cityAbbreviation['Madrid'] = "MAD";
+        cityAbbreviation['Toronto'] = "TOR";
+        cityAbbreviation['London'] = "LON";
+        cityAbbreviation['Tokyo'] = "TOK";
+        cityAbbreviation['New York'] = "NYC";
+        cityAbbreviation['Paris'] = "PAR";
+        cityAbbreviation['Berlin'] = "BER";
+        
+        var cityCoordinates = [];
+        // [ latitude , longitude ];
+        
+        cityCoordinates['Sao Paulo'] = [-23.550520, -46.633309];
+        cityCoordinates['Delhi'] = [28.613939, 77.209021];
+        cityCoordinates['Shanghai'] = [31.230416, 121.473701];
+        cityCoordinates['Madrid'] = [40.416775, -3.703790];
+        cityCoordinates['Toronto'] = [43.653226, -79.383184];
+        cityCoordinates['London'] = [51.507351, -0.127758];
+        cityCoordinates['Tokyo'] = [35.689487, 139.691706];
+        cityCoordinates['New York'] = [40.712784, -74.005941];
+        cityCoordinates['Paris'] = [48.856614, 2.352222];
+        cityCoordinates['Berlin'] = [52.520007, 13.404954];
+        
+        
+        
+        
+        // load csv files 
+        var loadThese = ['Sao Paulo', 'Berlin', 'Toronto', 'Shanghai', 'Delhi', 'London', 'Paris', 'Madrid', 'New York'];
+        
+        
+        var loaded = 0;
+        
+        function loadCSV(file){
+            var request;
+            if (window.XMLHttpRequest) {
+                // IE7+, Firefox, Chrome, Opera, Safari
+                request = new XMLHttpRequest();
+            }
+            else {
+                // code for IE6, IE5
+                request = new ActiveXObject('Microsoft.XMLHTTP');
+            }
+            // load
+            request.open('GET', file + ".csv", false);
+            request.send();
+            parseCSV(request.responseText);
+        }
+        
+        function parseCSV(data){
+            // alert(data);
+            
+            
+          //  $("<h2>" + loadThese[loaded] + "</h2>").appendTo($("body"));
+            
+            var array = "" + JSON.stringify(data);
+            
+            
+            array = "" + array.toString();
+            
+            array = "" + array.replace(/"/g, "")
+            
+            array = "" + array.replace(/\\r/g, ",")
+            
+            array = array.split(',');
+            
+            var row = 0;
+            
+            for (var i = 1; i < (array.length / 4); i++) {
+            
+            
+                row = i * 4;
+                               
+                
+                var langue = 'Lozi';
+                var city = 'NYC';
+                var year = '2005';
+                
+				if (Number(array[row + 3]) != 0){
+					
+                	reformattingData[(array[row + 1])][cityAbbreviation[loadThese[loaded]]][(array[row]).slice(2)] = array[row + 3];
+					
+				}
+				
+                
+            }
+            
+            
+            
+            loaded++;
+            
+            if (loaded < loadThese.length) {
+                loadCSV(loadThese[loaded]);
+            }
+            else {
+                // make new object
+                
+                $("<h2>//New JSON object...</h2>").appendTo($("body"));
+				
+				// removing over 100 empty cities 
+				
+				var json_ = JSON.stringify(reformattingData);
+				
+				json_ = json_.replace(/{"04":0,"05":0,"06":0,"07":0,"08":0,"09":0,"10":0,"11":0,"12":0,"13":0,"14":0,"15":0},/g,'')
+				json_ = json_.replace(/{"04":0,"05":0,"06":0,"07":0,"08":0,"09":0,"10":0,"11":0,"12":0,"13":0,"14":0,"15":0}/g,'')
+				
+				json_ = json_.replace(/"SP":"/g,'"');
+				json_ = json_.replace(/"DEL":"/g,'"');
+				json_ = json_.replace(/"SHA":"/g,'"');
+				json_ = json_.replace(/"MAD":"/g,'"');
+				json_ = json_.replace(/"TOR":"/g,'"');
+				json_ = json_.replace(/"LON":"/g,'"');
+				json_ = json_.replace(/"TOK":"/g,'"');
+				json_ = json_.replace(/"NYC":"/g,'"');
+				json_ = json_.replace(/"PAR":"/g,'"');
+				json_ = json_.replace(/,"BER":}/g,'}');				
+				
+                $("<div>var data =" + json_ + ";</div>").appendTo($("body"));
+                
+            }
+            
+        }
+        
+        
+        
+        
+        loadCSV(loadThese[loaded]);
+        
+        var data = {
+            "Irish": {
+                "NYC": {
+                    "02": [4826.864563, 0.000486604],
+                    "03": [4826.864563, 0.000486604]
+                }
+            }
+        };
+        
+        //alert(data[language][City][Year][0]);
+    </script>
+</html>

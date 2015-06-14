@@ -1332,12 +1332,19 @@
                     
                     for (i = toggle; i < max; i++) {
                     
-                        // radius = sqrt(area / PI)
-                        total = total + Math.sqrt(maps[id].data[maps[id].dataPoint][i].area / Math.PI)
-                        
-                        if (maps[id].data[maps[id].dataPoint][i].area > 0) {
-                            number_of_bubbles_to_show++;
-                        }
+						if(maps[id].data[maps[id].dataPoint][i]){
+							
+	                        // radius = sqrt(area / PI)
+	                        total = total + Math.sqrt(maps[id].data[maps[id].dataPoint][i].area / Math.PI)
+	                        
+	                        if (maps[id].data[maps[id].dataPoint][i].area > 0) {
+	                            number_of_bubbles_to_show++;
+	                        }							
+							
+							
+						}
+					
+
                     }
                     
                     maps[id].centerText.attr({
@@ -1534,10 +1541,12 @@
 								//amount_of_balls = (data[idx][cityAbbreviation[key]][year]) * 100; // area!
 								//amount_of_balls = idx // id!
 								
-								maps[mapID].data[i].push({
-									"id": idx,
-									"area": ((data[idx][cityAbbreviation[key]][years[i].slice(-2)]) * 100).toString().substring(0, 8)
-								});
+								if(data[idx][cityAbbreviation[key]]){
+									maps[mapID].data[i].push({
+										"id": idx,
+										"area": ((data[idx][cityAbbreviation[key]][years[i].slice(-2)]) * 100).toString().substring(0, 8)
+									});									
+								}
 							});
 						}
 						else {

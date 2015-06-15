@@ -57,7 +57,7 @@
 			}
 		
 			#iframelightbox div {
-				z-index:100000;
+				z-index:3000;
 				margin:auto;
 				margin-top:100pt;
 				width:40%;
@@ -184,7 +184,7 @@
 	        }
 	        
 	        .copyright a {
-	            z-index: 2;
+	            z-index: 2000;
 	        }
 	        
 	        .copyright p {
@@ -540,7 +540,6 @@
 	        }
 	        
 	        .copyright * {
-	            margin-top: 410pt;
 	        }
 	        
 	        .option * {
@@ -556,7 +555,6 @@
 	        }
 	        
 	        .copyright {
-	            position: relative;
 	        }
 	        
 	        .option {
@@ -581,7 +579,7 @@
 				height:100%;
 				width:100%;
 				background:#000;
-				z-index: 1000; 
+				z-index: 2500; 
                 opacity: 0.4;
                 filter:  alpha(opacity = 40); /* For IE8 and earlier */
 
@@ -801,10 +799,7 @@
 			    </div>
             </div>
 			
-			<div class='copyright hide'>
-				<a href='https://www.google.com/trends/'><img class='logo' src='GoogleTrendsLogo.png' width='140pt' height='40pt'></a>
-				<p>&copy;2015 Google</p>
-			</div>			
+		
             <div id="graphics" class="hide"><!--
                 --><div id='graphic_one' class="">
                     <div class="navigation">
@@ -1023,7 +1018,17 @@
                     --><span class=""> 2015</span><!--
                 --></div><!--
             --></div>
+			
+			
+			
+			
         </div>
+		
+			<div class='copyright hide'>
+				<a href='https://www.google.com/trends/'><img class='logo' src='GoogleTrendsLogo.png' width='140pt' height='40pt'></a>
+				<p>&copy;2015 Google</p>
+			</div>			
+		
         <script type="text/javascript" src="jquery-2.0.0.min.js">
         </script>
 		<script type='text/javascript' src='raphael.js'>
@@ -1768,7 +1773,7 @@
 				
 					var newHeight;
 					
-					var logoHieght = $('img.logo').height();
+					var logoHieght = $('img.logo').height() + 40;
 					
 					var windowHieght = $(window).height()
 					
@@ -2350,14 +2355,8 @@
 					smallLandingImageSizes($page);
 					
 					var $whiteBox = $page.find('.whiteBox');
-					
-	                
+					/*
 					$whiteBox.stop();
-					
-					
-					
-					
-					
 					
 	                $whiteBox.css({
 	                    "width": "0",
@@ -2366,14 +2365,13 @@
 						"z-index": 10000
 						
 	                });
-					
-					
-					
+
 	                $whiteBox.animate({
 	                    "width": "100%"
 	                }, {
 	                    duration: 150,
 	                    complete: function(){
+	                    */
 	                        foo($page , $click);
 							
 	                        $whiteBox.animate({
@@ -2391,8 +2389,10 @@
 									updateLandingImageSizes();
 	                            }
 	                        });
+							/*
 	                    }
 	                });
+					*/
 					
 				}
 				
@@ -2476,7 +2476,7 @@
 				// VIEW - footer /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				
 				function footerVIEW () {
-				
+				/*
 					var f1 = $("#graphic_one").width() / $("#graphic_one").parent().width() * 100;
 				
 					var f2 = $("#graphic_two").width() / $("#graphic_two").parent().width() * 100;
@@ -2484,11 +2484,11 @@
                     if ( MODEL.graphic_two.showing && ( f2 > 89 || f1 > 89)   ) {
                         //stacked
 						$(".copyright *").css('margin-top','820pt');
-						/*
-                    } else if(MODEL.graphic_one.showing && f > 89){
+						
+                    //} else if(MODEL.graphic_one.showing && f > 89){
 					
-						$(".copyright *").css('margin-top', ( $('#graphics').position().top + $('#graphics').position().height()   ));
-					*/
+						//$(".copyright *").css('margin-top', ( $('#graphics').position().top + $('#graphics').position().height()   ));
+					
 					
 					} else {
 						//side by side									
@@ -2498,7 +2498,7 @@
 					
 					$(".copyright .logo").css('margin-top','0');
 		
-				
+				*/
 				}				
 				
 				

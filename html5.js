@@ -8,7 +8,7 @@
     }
     
     // Detect HTML v5 compatibility
-    var htmlMessage = '<div id="no-html5"><h1  style="text-align: center;">Whoops!</h1><h2  style=" text-align: center;">Your using an old browser, please update it to view this website...</h2><img style="display:block; margin-left: auto; margin-top: 1em; margin-right: auto; width: 9em;"  src="sad.gif" alt="Old browser"></div><style>body{background:white;}#no-html5 img {display: block;margin: 2em auto;}</style>';
+    var htmlMessage = '<div id="no-html5"><h1  style="text-align: center;">Whoops!</h1><h2  style=" text-align: center;">Your using an old browser, please update it to view this data visualisation.</h2><img style="display:block; margin-left: auto; margin-top: 1em; margin-right: auto; width: 9em;"  src="sad.gif" alt="Old browser"></div><style>body{background:white;}#no-html5 img {display: block;margin: 2em auto;}</style>';
     
     var userAgent = navigator.userAgent;
     var test;

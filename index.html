@@ -1050,6 +1050,8 @@
 				 * 
 				 * 
 				 *********************************************/						
+				//2.2 never cuts off anything, make this number smaller to make bubbles bigger.
+				var bubblesSize = 1.4;
 				
 				var MODEL = {
 					graphic_one:{
@@ -1760,10 +1762,10 @@
                     maps[id].bigCX = canvasWidth / 2;
                     maps[id].bigCY = canvasHeight / 2;
                     
-                    maps[id].bigR = maps[id].bigCY / 2.2;
+                    maps[id].bigR = maps[id].bigCY / bubblesSize;
                     
                     if (maps[id].bigCY > maps[id].bigCX) {
-                        maps[id].bigR = maps[id].bigCX / 2.2;
+                        maps[id].bigR = maps[id].bigCX / bubblesSize;
                     }				
 									
 				});
@@ -1878,10 +1880,10 @@
                         maps[id].bigCX = canvasWidth / 2;
                         maps[id].bigCY = canvasHeight / 2;
                         
-                        maps[id].bigR = maps[id].bigCY / 2.2;
+                        maps[id].bigR = maps[id].bigCY / bubblesSize;
                         
                         if (maps[id].bigCY > maps[id].bigCX) {
-                            maps[id].bigR = maps[id].bigCX / 2.2;
+                            maps[id].bigR = maps[id].bigCX / bubblesSize;
                         }
 						
 						setRadius(id);

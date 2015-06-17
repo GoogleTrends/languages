@@ -1531,8 +1531,8 @@
 							
 							
                             maps[id].texts[arrayIndex].attr("fill-opacity", 0).hide();
-                            maps[id].texts[arrayIndex].attr("text", maps[id].data[maps[id].dataPoint][i].area + "%" + "\n" + maps[id].data[maps[id].dataPoint][i].id);
-                            
+                            //maps[id].texts[arrayIndex].attr("text", maps[id].data[maps[id].dataPoint][i].area + "%" + "\n" + maps[id].data[maps[id].dataPoint][i].id);
+                           maps[id].texts[arrayIndex].attr("text", "Rank: " + Number(i + 1) + "\n" + maps[id].data[maps[id].dataPoint][i].id);
 							
 							if (maps[id].texts[arrayIndex].getBBox().width < 2 * (radius * radius_multiplier)) {
                                 maps[id].texts[arrayIndex].attr("fill-opacity", 1).show();
@@ -1543,7 +1543,9 @@
                                     maps[id].texts[arrayIndex].attr("fill-opacity", 1).show();
                                 }
                                 else {
-                                    maps[id].texts[arrayIndex].attr("text", maps[id].data[maps[id].dataPoint][i].area + "%");
+                                    //maps[id].texts[arrayIndex].attr("text", maps[id].data[maps[id].dataPoint][i].area + "%");
+                                    maps[id].texts[arrayIndex].attr("text", "Rank: " + Number(i + 1));
+									
                                     if (maps[id].texts[arrayIndex].getBBox().width < 2 * (radius * radius_multiplier)) {
                                         maps[id].texts[arrayIndex].attr("fill-opacity", 1).show();
                                     } else {

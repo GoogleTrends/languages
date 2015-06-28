@@ -868,7 +868,30 @@
 								</span>
                             </div>				
                             <div id='map_one' class="map">
-                        	</div>
+                            </div>
+							<div class="scrollbar"><!--
+								--><div class="play_pause">
+									<div class="play">
+										<div></div>
+									</div>
+									<div class="pause hide">
+										<div></div>
+									</div>								
+								</div><!--
+								--><div class="timeline"><!--
+									--><span class="">
+										2004
+									</span><!--						
+									--><span class="scrubber">
+										<div class="play_line"><div ></div></div>
+										<span class="dragger">
+										</span>									
+									</span><!--
+									--><span class="">
+										2015
+									</span><!--										
+								--></div><!--
+                            --></div>
                         </div>
                         <!-- .page_three end -->
                     </div>
@@ -943,6 +966,29 @@
                             </div>								
                             <div id='map_two' class="map">
                             </div>
+                            <div class="scrollbar"><!--
+								--><div class="play_pause">
+									<div class="play">
+										<div></div>
+									</div>
+									<div class="pause hide">
+										<div></div>
+									</div>								
+								</div><!--
+								--><div class="timeline"><!--
+									--><span class="">
+										2004
+									</span><!--						
+									--><span class="scrubber">
+										<div class="play_line"><div ></div></div>
+										<span class="dragger">
+										</span>									
+									</span><!--
+									--><span class="">
+										2015
+									</span><!--										
+								--></div><!--
+                            --></div>
                         </div>
                         <!-- .page_three end -->
                     </div>
@@ -997,9 +1043,6 @@
             
             $(document).ready(function(){
 				
-				
-				var $body = $('body');
-				
 				/*********************************************
 				 * 
 				 * 
@@ -1029,7 +1072,10 @@
 					}					
 				};
 				
-								
+				
+				console.log(MODEL);
+				
+				
 				/*********************************************
 				 * 
 				 *					Globals 
@@ -1473,12 +1519,15 @@
                                 XY.cx = maps[id].bigCX;
                             }
 							
+					//console.log( maps[id].bubbles);
 							
                             maps[id].bubbles[arrayIndex].stop().animate({
                                 "cx": XY.cx,
                                 "cy": XY.cy,
                                 "r": radius * radius_multiplier
                             }, 400);
+							
+							
 							
 							
                             maps[id].texts[arrayIndex].attr("fill-opacity", 0).hide();
@@ -1752,11 +1801,7 @@
 							newHeight = windowHieght;
 							newHeight -= $map.position().top;
 							newHeight -= logoHieght;
-
-							if($body.find('div.scrollbar').is(":visible") ){
-								newHeight -= $body.find('div.scrollbar').height();
-							}
-
+							newHeight -= $map.parent().find('div.scrollbar').height();
 							$map.css("height", newHeight);
 							
 							
@@ -1768,10 +1813,6 @@
 							newHeight = windowHieght;
 							newHeight -= $scrollable_content.position().top;
 							newHeight -= logoHieght;
-
-							if($body.find('div.scrollbar').is(":visible") ){
-								newHeight -= $body.find('div.scrollbar').height();
-							}
 							$scrollable_content.css("height", newHeight);
 						});
 												
@@ -1797,11 +1838,6 @@
                             newHeight = windowHieght;
                             newHeight -= $option.position().top;
                             newHeight -= logoHieght;
-							
-							if($body.find('div.scrollbar').is(":visible") ){
-								newHeight -= $body.find('div.scrollbar').height();
-							}
-							
                             $option.css("height", newHeight);
                             $option.find('.landing_image').css("height", newHeight);
                             $option.find('p').css("margin-top", "20pt");
@@ -1815,6 +1851,12 @@
 				}
 				
 					
+					
+					
+					
+				
+				
+
 				
 				function updateMapSizes(){
 					
@@ -1869,20 +1911,6 @@
                     else {
                         MODEL.graphic_two.showing = true;
                     }
-					
-                    
-                    if (MODEL['graphic_one'].page != 2 && MODEL.graphic_two.showing == false) {
-                        $body.find('#scrollbarMaster').hide();
-                    }
-                    
-                    else 
-                        if (MODEL['graphic_one'].page != 2 && MODEL['graphic_two'].page != 2) {
-                            $body.find('#scrollbarMaster').hide();
-                        }
-                        else {
-                            $body.find('#scrollbarMaster').show();
-                        }
-					
 										
 					numberOfGraphicsVIEW ();
 					setURL();
@@ -1921,90 +1949,45 @@
 				
 
 
-				function stoppedPlay () {
-					$body.find('.play').removeClass('hide');
-					$body.find('.pause').addClass('hide');
-					clearInterval(intervals['playing']);				
+				function stoppedPlay (graphic_id) {
+					graphic_id.find('.play').removeClass('hide');
+					graphic_id.find('.pause').addClass('hide');
+					clearInterval(intervals[graphic_id.attr('id')]);				
 				}
 
 
 				function switchPlay (graphic_id) {
-				
-					if($body.find('.play').hasClass('hide')){
-						stoppedPlay();						
+					if(graphic_id.find('.play').hasClass('hide')){
+						//alert('stopped');
+						stoppedPlay(graphic_id);						
 					} else {
-						$body.find('.play').addClass('hide');
-						$body.find('.pause').removeClass('hide');
+						//alert('playing');
+						graphic_id.find('.play').addClass('hide');
+						graphic_id.find('.pause').removeClass('hide');
 						
-						if (MODEL['graphic_one'].page == 2) {
-							
-							var currentGraphic = $body.find('#graphic_one');
 						
-							if (currentGraphic.find('h4').text().replace(/[^0-9]+/g, "") == '2015') {
-								currentGraphic.find('h4').text(2004);
-								MODEL['graphic_one'].year = '2004';
-								updateMap(currentGraphic, '2004');
-								addMinoritiesText(currentGraphic);
-								set_scrubber(currentGraphic);
-								
-							}
+						if(graphic_id.find('h4').text().replace(/[^0-9]+/g, "") == '2015'){
+								graphic_id.find('h4').text(2004);
+								MODEL[graphic_id.attr('id')].year = '2004';
+								updateMap(graphic_id, '2004');
+								addMinoritiesText(graphic_id);
+								set_scrubber(graphic_id);	
+								setRadius( graphic_id.find('.map').attr('id') );
 						}
-						
-						if (MODEL['graphic_two'].page == 2) {
-							
-							var currentGraphic = $body.find('#graphic_two');
-						
-							if (currentGraphic.find('h4').text().replace(/[^0-9]+/g, "") == '2015') {
-								currentGraphic.find('h4').text(2004);
-								MODEL['graphic_two'].year = '2004';
-								updateMap(currentGraphic, '2004');
-								addMinoritiesText(currentGraphic);
-								set_scrubber(currentGraphic);
-
-								
-							}
-						}
-						
 						
 						var words;
 						
-						intervals['playing'] = setInterval(function() {
+						intervals[graphic_id.attr('id')] = setInterval(function() {
 							
-						if (MODEL['graphic_one'].page == 2) {
-							
-							var currentGraphic = $body.find('#graphic_one');
-						
-							words = Number(currentGraphic.find('h4').text().replace(/[^0-9]+/g, "")) + 1;
+							words = Number(graphic_id.find('h4').text().replace(/[^0-9]+/g, "")) + 1;
 							if (words < 2016) {
-								MODEL['graphic_one'].year = words;
-								updateMap(currentGraphic, words);
+								MODEL[graphic_id.attr('id')].year = words;
+								updateMap(graphic_id, words);
 								
+							} else {
+								stoppedPlay(graphic_id);
 							}
-							else if(MODEL['graphic_two'].page != 2) {
-								stoppedPlay();
-							}
-						}
-						
-						if (MODEL['graphic_two'].page == 2) {
-							
-							var currentGraphic = $body.find('#graphic_two');
-						
-							words = Number(currentGraphic.find('h4').text().replace(/[^0-9]+/g, "")) + 1;
-							if (words < 2016) {
-								MODEL['graphic_two'].year = words;
-								updateMap(currentGraphic, words);
-								
-							}
-							else {
-								stoppedPlay();
-							}
-						}						
-						
-						
-						
 							setURL();
-						
-						
 	                    },
 	                    800);						
 					}
@@ -2015,14 +1998,14 @@
                     graphic_id.find('h4').text(words);
                     addMinoritiesText(graphic_id);
                     set_scrubber(graphic_id);
-                    setRadius(graphic_id.find('.map').attr('id'));											
-					
+                    setRadius(graphic_id.find('.map').attr('id'));
                     
                 }
 
 								
                 $(".play_pause").click(function(e){
-					switchPlay();
+					var graphic_id = $(this).parent().parent().parent().parent();
+					switchPlay(graphic_id);
   					e.preventDefault();
 				});
 				
@@ -2031,38 +2014,26 @@
 				function set_x_dragging(min,max,half,dragger,graphic_number){
 					if(mouseX > min && mouseX < max){
                    		dragger.offset({ left: mouseX - half  });
+						//setYearText (mouseX,min,max,graphic_number);
 					}				
 				}
 				
 				
 				// CONTROLLER - year /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				
-				function setYearText (magicX,min,max){
+				function setYearText (magicX,min,max,graphic_number){
 										
 					var scope = ( 2015 - 2004) / (max - min);
 					var arrayNo = (magicX - max) * (scope * -1);					
 					arrayNo = Math.round(arrayNo);
 							
-					var currentGraphic;
+					var graphic_id = (graphic_number.attr('id'));
 							
-					if (MODEL['graphic_one'].page == 2) {
-						currentGraphic = $body.find('#graphic_one');
-						var graphic_id = 'graphic_one';
-						MODEL[graphic_id].year = years[arrayNo];
-						setYearTextVIEW(graphic_id);
-						setRadius(currentGraphic.find('.map').attr('id'));
-						
-					}
+					MODEL[graphic_id].year = years[arrayNo];
+																									
+					setYearTextVIEW(graphic_id);
 					
-					if (MODEL['graphic_two'].page == 2) {
-						currentGraphic = $body.find('#graphic_two');
-						var graphic_id = 'graphic_two';
-						MODEL[graphic_id].year = years[arrayNo];
-						setYearTextVIEW(graphic_id);
-						setRadius(currentGraphic.find('.map').attr('id'));
-						
-						
-					}
+					setRadius( graphic_number.find('.map').attr('id') );
 					
 					setURL();
 					
@@ -2073,16 +2044,12 @@
 				
 				function setYearTextVIEW(graphic_id_from_controller){
 				
-					var graphicDOM = $('#' + 'graphic_one');
+					var graphicDOM = $('#' + graphic_id_from_controller);
 					
 					graphicDOM.find('h4').text(MODEL[graphic_id_from_controller].year);
+					
 					addMinoritiesText(graphicDOM);
 					
-					
-					graphicDOM = $('#' + 'graphic_two');
-					
-					graphicDOM.find('h4').text(MODEL[graphic_id_from_controller].year);
-					addMinoritiesText(graphicDOM);
 					
 					
 				}				
@@ -2103,24 +2070,20 @@
 				
 				$('.play_pause').each(function(index) {
 					var id = ($(this).parent().parent().parent().parent().attr('id'));
-					intervals['playing'] =  setInterval(function() {},20000000);
-					clearInterval(intervals['playing']);							
+					intervals[id] =  setInterval(function() {},20000000);
+					clearInterval(intervals[id]);							
 				});				
                 				
 				function set_scrubber(graphic_number){
 									
-					var dragger = $body.find('.dragger');
+					var dragger = graphic_number.find('.dragger');
 					var dragging_container = dragger.parent();
 					var half = dragger.width() / 2;
 					var min = dragging_container.position().left + half;
 					var max = min + dragging_container.width() - half - half;
 					var scope = (max - min) / (2015 - 2004);
 					
-                    var year = Number($body.find('#graphic_two').find('h4').text().replace(/[^0-9]+/g, ""));
-                    
-                    if (MODEL['graphic_one'].page == 2) {
-                        year = Number($body.find('#graphic_one').find('h4').text().replace(/[^0-9]+/g, ""));
-                    }
+					var year = Number(graphic_number.find('h4').text().replace(/[^0-9]+/g, ""));
 					
 					var arrayNo = (2004 - year) * -1;
 					
@@ -2146,6 +2109,17 @@
 												
 					});
 					
+					/*
+					if(pages == 2){
+						$('.scrollbar').addClass('hide');
+						$('#scrollbarMaster').removeClass('hide');										
+						//alert('2 big');					
+					} else {
+						$('.scrollbar').removeClass('hide');
+						$('#scrollbarMaster').addClass('hide');	
+						//alert('1 small');					
+					}
+					*/
 					
 					$('h4').each(function(index) {
 						var graphic_number = $(this).parent().parent().parent();
@@ -2153,6 +2127,10 @@
 						set_scrubber(graphic_number);
 												
 					});					
+					
+					
+					
+					//id='scrollbarMaster' class="scrollbar"					
 					
 								
 				}
@@ -2163,48 +2141,49 @@
 					
 
 
-				$('.scrubber').bind("touchmove", function(e) {
+				$('#graphics .scrubber').bind("touchmove", function(e) {
   					//Disable scrolling by preventing default touch behaviour
   					e.preventDefault();
 					var dragger = $(this).find('.dragger');
-					stoppedPlay();					
+					var graphic_number = dragger.parent().parent().parent().parent().parent().parent();									
+					stoppedPlay(graphic_number);					
 					var half = dragger.width() / 2;
 					var dragging_container = dragger.parent();
 					var min = dragging_container.position().left + half;					
 					var max = min + dragging_container.width() - half - half;						
-					set_x_dragging(min,max,half,dragger);
-					setYearText (mouseX,min,max);
+					set_x_dragging(min,max,half,dragger,graphic_number);
+					setYearText (mouseX,min,max,graphic_number);
 
 
 				});
 
 
-                $(".scrubber").mousedown(function(e){
+                $("#graphics .scrubber").mousedown(function(e){
   					e.preventDefault();
 					var dragger = $(this).find('.dragger');
 					var graphic_number = dragger.parent().parent().parent().parent().parent().parent();									
-					stoppedPlay();					
+					stoppedPlay(graphic_number);					
 					var half = dragger.width() / 2;
 					var dragging_container = dragger.parent();
 					var min = dragging_container.position().left + half;
 					var max = min + dragging_container.width() - half - half;
                     
-					set_x_dragging(min,max,half,dragger);
+					set_x_dragging(min,max,half,dragger,graphic_number);
 					
 					intervals['scrubber'] = setInterval(function() {
-						set_x_dragging(min,max,half,dragger);
+						set_x_dragging(min,max,half,dragger,graphic_number);
                     },
                     100);
 					
 					intervals['h4'] = setInterval(function() {
-						setYearText (mouseX,min,max);
+						setYearText (mouseX,min,max,graphic_number);
                     },
                     500);					
 							
 					$(window).on('mouseup', function(){
 						clearInterval(intervals['scrubber']);
 						clearInterval(intervals['h4']);
-						setYearText (mouseX,min,max);
+						setYearText (mouseX,min,max,graphic_number);
 						$(window).off('mouseup');
 					});									
 				});
@@ -2253,22 +2232,7 @@
 							graphic_id.find(pagesClass[$click]).removeClass("hide");
 						}
 						
-						
-                    if (MODEL['graphic_one'].page != 2 && MODEL.graphic_two.showing == false) {
-                        $body.find('#scrollbarMaster').hide();
-                    }
-                    
-                    else 
-                        if (MODEL['graphic_one'].page != 2 && MODEL['graphic_two'].page != 2) {
-                            $body.find('#scrollbarMaster').hide();
-                        }
-                        else {
-                            $body.find('#scrollbarMaster').show();
-                        }					
-						
-						
-						
-						stoppedPlay();
+						stoppedPlay(graphic_id);
 						
 						reset_scrubber();
 						
@@ -2297,22 +2261,6 @@
 					
 					MODEL[graphic_id].page = 2;
 					
-					if(graphic_id == 'graphic_two' && MODEL['graphic_one'].page==2){
-						MODEL.graphic_two.year = Number(MODEL.graphic_two.year);
-						
-						//MODEL['graphic_two'].dataPoint = Number(MODEL['graphic_one'].dataPoint);
-						
-						
-										
-					} else if (graphic_id == 'graphic_one' && MODEL['graphic_two'].page==2) {
-						MODEL.graphic_one.year = Number(MODEL.graphic_one.year);
-						
-						//MODEL['graphic_one'].dataPoint = Number(MODEL['graphic_two'].dataPoint);
-						
-											
-					}
-					
-			
 					
 					pageTwoVIEW(graphic_id);
 
@@ -2353,18 +2301,6 @@
 						graphic_id.find("h3").text(foo);
 						
 						
-                    if (MODEL['graphic_one'].page != 2 && MODEL.graphic_two.showing == false) {
-                        $body.find('#scrollbarMaster').hide();
-                    }
-                    
-                    else 
-                        if (MODEL['graphic_one'].page != 2 && MODEL['graphic_two'].page != 2) {
-                            $body.find('#scrollbarMaster').hide();
-                        }
-                        else {
-                            $body.find('#scrollbarMaster').show();
-                        }					
-						
 						
 						reset_scrubber();
 						drawMap(mapID);
@@ -2388,26 +2324,14 @@
                 $(".map_toggle span").click(function(){
 				
 					var graphic_id = $(this).parent().parent().parent().parent().parent().attr('id');
-										
-					if (typeof MODEL[graphic_id] === "undefined") {
-
-					} else {
 					
-						if (MODEL[graphic_id].showBiggest == true) {
-							MODEL[graphic_id].showBiggest = false;
-						}
-						else {
-							MODEL[graphic_id].showBiggest = true;
-						}
-						
-						showBiggestVIEW(graphic_id);
-						
-						setRadius($(this).parent().parent().parent().find('.map').attr('id'));
-						
-						setURL();						
-						
-						
-					}
+                    MODEL[graphic_id].showBiggest = !Boolean(MODEL[graphic_id].showBiggest);
+									
+					showBiggestVIEW(graphic_id);
+					
+					setRadius($(this).parent().parent().parent().find('.map').attr('id') );
+					
+					setURL();
 								
 				});	
 				
@@ -2504,21 +2428,6 @@
 					var graphicDOM = $('#' + graphic_id_from_controller);
 					
 					var trigger = function(graphic_id , label){
-						
-						
-                    if (MODEL['graphic_one'].page != 2 && MODEL.graphic_two.showing == false) {
-                        $body.find('#scrollbarMaster').hide();
-                    }
-                    
-                    else 
-                        if (MODEL['graphic_one'].page != 2 && MODEL['graphic_two'].page != 2) {
-                            $body.find('#scrollbarMaster').hide();
-                        }
-                        else {
-                            $body.find('#scrollbarMaster').show();
-                        }						
-						
-						
 						var choose = [];
 						choose['Cities'] = 'city';
 						choose['Languages'] = 'language';
@@ -2647,11 +2556,6 @@
 				if(Number(passedMODEL['5b']) > 2003 && Number(passedMODEL['5b']) < 2016  ){
 					MODEL.graphic_two.year = Number(passedMODEL['5b']);					
 				}
-				
-				if(Number(passedMODEL['5b']) !=  Number(passedMODEL['5a'])){
-					passedMODEL['5a'] == Number(passedMODEL['5b']);
-				}
-				
 				if( passedMODEL['2b'] == 'Cities' || passedMODEL['2b'] == 'Languages'  ){
 					MODEL.graphic_two.dataSet = passedMODEL['2b'];
                     
@@ -2722,11 +2626,6 @@
                                     pageTwoVIEW('graphic_two');
                                     showBiggestVIEW('graphic_two');
                                     set_scrubber($('#graphic_two'));
-
-									if (MODEL.graphic_two.showing ){
-										$body.find('#scrollbarMaster').show();
-									}
-
                                 }
                             
                             if (MODEL['graphic_one'].page == 1) {
@@ -2738,8 +2637,6 @@
                                     pageTwoVIEW('graphic_one');
                                     showBiggestVIEW('graphic_one')
                                     set_scrubber($('#graphic_one'));
-									
-									$body.find('#scrollbarMaster').show();
                                     
                                 }
                             

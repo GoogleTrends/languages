@@ -1012,6 +1012,12 @@
 				
 				var bubblesOpacity = 0.55;
 				
+				var skylineWidth = 420; // width and height are both 420px
+				
+				var skylinePath = "M77,249v-14h4v-6h4v-18h8v-6h4v-6h8v-12h8v18h4v-12h8v-12h8v-12h16v-6h12v30h4v-18h8v-18h14v24h4v30h4v-18h8v-42h14v18h14v12h8v24h4v-42h22v24h4v-12h22v18h4v-6h14v18h8v18h4v-12h14v18h4v6h4v14z";
+				
+
+				
 				var MODEL = {
 					graphic_one:{
 						showing: true,
@@ -1334,6 +1340,39 @@
                         "cy": maps[id].bigCY,
                         "r": maps[id].bigR
                     }, 400);
+					
+					
+					
+					
+
+					var whereWeWantToBeX = maps[id].bigCX - maps[id].bigR;
+					var whereWeWantToBeY = maps[id].bigCY - maps[id].bigR;
+					var newX = (0 - maps[id].skylineX) + whereWeWantToBeX;
+					var newY = (0 - maps[id].skylineY) + whereWeWantToBeY;	
+					maps[id].skylineX = whereWeWantToBeX;		
+					maps[id].skylineY = whereWeWantToBeY;			
+                    maps[id].skylinePath.translate(
+                        newX,
+                        newY
+                    );					
+					
+					
+
+
+
+
+					//var skylineScale = (Number(maps[id].skylineScale) / 420) * Number(maps[id].bigR + maps[id].bigR );
+					
+					
+					//console.log(maps[id].skylineScale);
+					
+					
+					//maps[id].skylineScale = skylineScale;
+					
+					//maps[id].skylinePath.scale(skylineScale, skylineScale);		
+										
+					
+					
                     
                     maps[id].centerText.attr({
                         "x": maps[id].bigCX,
@@ -1660,12 +1699,29 @@
 					maps[mapID].texts = [];
 					maps[mapID].bubbles = [];
                     
+					
+					
+					
                     maps[mapID].centerBubble = maps[mapID].paper.circle(maps[mapID].bigCX, maps[mapID].bigCY, 0).attr({
+                        "fill": "#fff",
+						"stroke": "#f1f0f0",
+						
+						"stroke-opacity": 0.5,
+                        "stroke-width": 8
+                    });
+					
+					maps[mapID].skylineScale = 1;
+					maps[mapID].skylineX = 0;
+					maps[mapID].skylineY = 0;
+					
+                    maps[mapID].skylinePath = maps[mapID].paper.path(skylinePath).attr({
                         "fill": "#f1f0f0",
 						"stroke": "#fff",
-						"fill-opacity": 1,
                         "stroke-width": 0
                     });
+					
+					//maps[mapID].skylinePath.translate(maps[mapID].bigCX, maps[mapID].bigCY);
+					
                     
                     maps[mapID].centerText = maps[mapID].paper.text(maps[mapID].bigCX, maps[mapID].bigCY, "");
                     

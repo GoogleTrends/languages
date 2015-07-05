@@ -1014,9 +1014,16 @@
 				
 				var skylineWidth = 420; // width and height are both 420px
 				
-				var skylinePath = "M77,249v-14h4v-6h4v-18h8v-6h4v-6h8v-12h8v18h4v-12h8v-12h8v-12h16v-6h12v30h4v-18h8v-18h14v24h4v30h4v-18h8v-42h14v18h14v12h8v24h4v-42h22v24h4v-12h22v18h4v-6h14v18h8v18h4v-12h14v18h4v6h4v14z";
 				
-
+				function makeSkylinePath (x,y,width){
+					
+					//var skylinePath = "M77,249v-14h4v-6h4v-18h8v-6h4v-6h8v-12h8v18h4v-12h8v-12h8v-12h16v-6h12v30h4v-18h8v-18h14v24h4v30h4v-18h8v-42h14v18h14v12h8v24h4v-42h22v24h4v-12h22v18h4v-6h14v18h8v18h4v-12h14v18h4v6h4v14z";
+					
+					var multiplier = 1 / 420 * width;
+					
+					return "M" + ( x + (multiplier * 77) ) + "," + ( y + (multiplier * 249) ) + "v-" + ( multiplier * 14) + "h" + ( multiplier * 4) + "v-" + ( multiplier * 6) + "h" + ( multiplier * 4) + "v-" + ( multiplier * 18) + "h" + ( multiplier * 8) + "v-" + ( multiplier * 6) + "h" + ( multiplier * 4) + "v-" + ( multiplier * 6) + "h" + ( multiplier * 8) + "v-" + ( multiplier * 12) + "h" + ( multiplier * 8) + "v" + ( multiplier * 18) + "h" + ( multiplier * 4) + "v-" + ( multiplier * 12) + "h" + ( multiplier * 8) + "v-" + ( multiplier * 12) + "h" + ( multiplier * 8) + "v-" + ( multiplier * 12) + "h" + ( multiplier * 16) + "v-" + ( multiplier * 6) + "h" + ( multiplier * 12) + "v" + ( multiplier * 30) + "h" + ( multiplier * 4) + "v-" + ( multiplier * 18) + "h" + ( multiplier * 8) + "v-" + ( multiplier * 18) + "h" + ( multiplier * 14) + "v" + ( multiplier * 24) + "h" + ( multiplier * 4) + "v" + ( multiplier * 30) + "h" + ( multiplier * 4) + "v-" + ( multiplier * 18) + "h" + ( multiplier * 8) + "v-" + ( multiplier * 42) + "h" + ( multiplier * 14) + "v" + ( multiplier * 18) + "h" + ( multiplier * 14) + "v" + ( multiplier * 12) + "h" + ( multiplier * 8) + "v" + ( multiplier * 24) + "h" + ( multiplier * 4) + "v-" + ( multiplier * 42) + "h" + ( multiplier * 22) + "v" + ( multiplier * 24) + "h" + ( multiplier * 4) + "v-" + ( multiplier * 12) + "h" + ( multiplier * 22) + "v" + ( multiplier * 18) + "h" + ( multiplier * 4) + "v-" + ( multiplier * 6) + "h" + ( multiplier * 14) + "v" + ( multiplier * 18) + "h" + ( multiplier * 8) + "v" + ( multiplier * 18) + "h" + ( multiplier * 4) + "v-" + ( multiplier * 12) + "h" + ( multiplier * 14) + "v" + ( multiplier * 18) + "h" + ( multiplier * 4) + "v" + ( multiplier * 6) + "h" + ( multiplier * 4) + "v" + ( multiplier * 14) + "z";
+					
+				}
 				
 				var MODEL = {
 					graphic_one:{
@@ -1342,34 +1349,15 @@
                     }, 400);
 					
 					
-					
-					
 
 					var whereWeWantToBeX = maps[id].bigCX - maps[id].bigR;
 					var whereWeWantToBeY = maps[id].bigCY - maps[id].bigR;
-					var newX = (0 - maps[id].skylineX) + whereWeWantToBeX;
-					var newY = (0 - maps[id].skylineY) + whereWeWantToBeY;	
-					maps[id].skylineX = whereWeWantToBeX;		
-					maps[id].skylineY = whereWeWantToBeY;			
-                    maps[id].skylinePath.translate(
-                        newX,
-                        newY
+
+                    maps[id].skylinePath.attr(
+                        "path",
+                        makeSkylinePath( whereWeWantToBeX , whereWeWantToBeY , maps[id].bigR + maps[id].bigR)
                     );					
-					
-					
 
-
-
-
-					//var skylineScale = (Number(maps[id].skylineScale) / 420) * Number(maps[id].bigR + maps[id].bigR );
-					
-					
-					//console.log(maps[id].skylineScale);
-					
-					
-					//maps[id].skylineScale = skylineScale;
-					
-					//maps[id].skylinePath.scale(skylineScale, skylineScale);		
 										
 					
 					
@@ -1710,17 +1698,13 @@
                         "stroke-width": 8
                     });
 					
-					maps[mapID].skylineScale = 1;
-					maps[mapID].skylineX = 0;
-					maps[mapID].skylineY = 0;
 					
-                    maps[mapID].skylinePath = maps[mapID].paper.path(skylinePath).attr({
+                    maps[mapID].skylinePath = maps[mapID].paper.path("M0,0").attr({
                         "fill": "#f1f0f0",
 						"stroke": "#fff",
                         "stroke-width": 0
                     });
 					
-					//maps[mapID].skylinePath.translate(maps[mapID].bigCX, maps[mapID].bigCY);
 					
                     
                     maps[mapID].centerText = maps[mapID].paper.text(maps[mapID].bigCX, maps[mapID].bigCY, "");

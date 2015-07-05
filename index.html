@@ -1010,6 +1010,8 @@
 				//2.2 never cuts off anything, make this number smaller to make bubbles bigger.
 				var bubblesSize = 1.4;
 				
+				var bubblesOpacity = 0.55;
+				
 				var MODEL = {
 					graphic_one:{
 						showing: true,
@@ -1162,7 +1164,7 @@
 					];
 					
                     for(var i = 0 ; i < maps[id].circles.length ; i++ ){ 
-                    	maps[id].circles[i].attr({"stroke-width": 0 , 'opacity': 0.35 , "stroke": "#fff"}); 
+                    	maps[id].circles[i].attr({"stroke-width": 0 , 'opacity': bubblesOpacity , "stroke": "#fff"}); 
                     } 
 					
 					if (id.replace('Cities','').length == id.length){
@@ -1559,7 +1561,7 @@
 				
                 function clicks(test, i , mapID){
                     test.mouseover(function(){
-                        test.attr("fill-opacity", 0.6);
+                        test.attr("fill-opacity", (bubblesOpacity + 0.1));
 
 						var graphic_id = $('#'+mapID).parent().parent().parent().attr('id');
 						
@@ -1583,7 +1585,7 @@
 						
                     }).mouseout(function(){
                         removeHover();
-                        test.attr("fill-opacity", 0.4);
+                        test.attr("fill-opacity", bubblesOpacity);
                     });
                 }			
 					
@@ -1672,12 +1674,13 @@
                     
                         radius = 0;
                         
+						// note text bubbles are below bubbles so we don't need to add hover listeners to them or setup invisible button areas on top of both bubbles and text.
                         maps[mapID].texts.push(maps[mapID].paper.text(maps[mapID].bigCX, maps[mapID].bigCY, ""));
                         
                         maps[mapID].bubbles.push(maps[mapID].paper.circle(maps[mapID].bigCX, maps[mapID].bigCY, 0).attr({
                             "fill": colours[RandomNumber()],
 							"stroke": "#fff",
-                            "fill-opacity": 0.4,
+                            "fill-opacity": bubblesOpacity,
                             "stroke-width": 0
                         }));
                         

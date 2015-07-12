@@ -1043,15 +1043,33 @@
 					var parisPath = ["M",343,249,"v",-21,"h",-9,"v",-13,"h",-27,"v",26,"h",10,"v",-12,"h",1,"v",-1,"h",1,"v",-1,"h",3,"v",1,"h",1,"v",1,"h",1,"v",11,"h",-1,"v",-3,"h",-3,"v",4,"h",-14,"v",-2,"h",-1,"v",-1,"h",-2,"v",1,"h",-2,"v",2,"h",-1,"v",-12,"h",-1,"v",2,"h",-2,"v",-5,"h",-1,"v",-3,"h",-1,"v",-1,"h",-1,"v",-5,"h",-1,"v",-1,"h",-1,"v",6,"h",-1,"v",-1,"h",-1,"v",-6,"h",-1.025,"c",0.017,-0.165,0.025,-0.331,0.025,-0.5,"c",0,-2.518,-1.691,-4.634,-4,-5.288,"v",-7,"h",-3,"v",7.212,"c",-2.309,0.654,-4,2.771,-4,5.288,"c",0,0.169,0.011,0.335,0.025,0.5,"h",-1,"v",7,"h",-2,"v",-5,"h",-2,"v",4,"h",-1,"v",2,"h",-1,"v",3,"h",-1,"v",3,"h",-1,"v",-7,"h",-1,"v",-10,"h",-1,"v",-11,"h",-1,"v",-1,"h",-7,"v",1,"h",-1,"v",16,"h",-6,"v",-3,"h",5,"v",-3,"h",-2,"v",-4,"h",-1,"v",4,"h",-2,"v",-9,"h",-1,"v",-2,"h",-6,"v",-1,"h",-2,"v",3,"h",-1,"v",10,"h",-1,"v",14,"h",-1,"v",12,"h",-1,"v",1,"h",-1,"v",2,"h",-1,"v",-12,"h",1,"v",-3,"h",-1,"v",-3,"h",-1,"v",4,"h",-2,"v",2,"h",2,"v",10,"h",-2,"v",1,"h",-1,"v",-2,"h",-1,"v",-12,"h",1,"v",-3,"h",-6,"v",-1,"h",-2,"v",-1,"h",-8,"v",-6,"h",-1,"v",-9,"h",-3,"v",-8,"h",-1.294,"c",-0.769,-2.581,-2.984,-4.53,-5.706,-4.92,"v",-8,"h",-2,"v",8.08,"c",-2.722,0.39,-4.938,2.34,-5.706,4.92,"h",-1.5,"v",8,"h",-3,"v",11,"h",-1,"v",4,"h",-7,"v",2,"h",-8,"v",15,"h",-2,"c",-2.393,-3.52,-4.37,-7.633,-6,-12.104,"v",-3,"h",-6,"h",-7,"l",1,-10,"h",5,"l",1,10,"h",5.007,"c",-9,-27,-5.75,-65,-5.75,-65,"h",-2,"l",-0.5,-11,"l",-0.5,11,"h",-2,"c",0,0,2.75,37.828,-6.007,65,"h",-1,"v",2.896,"c",-1.63,4.471,-3.607,8.584,-6,12.104,"h",6,"v",-1,"c",0,-3.866,4.029,-7,9,-7,"s",9,3.134,9,7,"v",1,"h",-25,"v",-15,"h",-3,"v",9,"h",-2,"v",-15,"h",-4,"v",17,"h",-2,"v",3,"h",-1,"v",-2,"h",-20,"v",-15,"h",12,"v",15,"h",8,"v",-26,"h",-26,"v",28,"h",-1,"v",-5,"h",-1,"v",-10,"h",-3,"v",-7,"h",-3,"v",-2,"h",-1,"v",2,"h",-1,"v",13,"h",-2,"v",5,"h",-1,"v",-19,"h",-6,"v",19,"h",-1,"v",-14,"h",-5,"v",19,"h",-1,"v",1,"h",-1,"v",2,"h",-2,"v",8,"z"];
 										
 					
-					 return defaultPath;
+					var selectedPath = parisPath;
+					
+					
+					var returnPath = [];
+					
+					for (var i = 0; i < selectedPath.length; i++) {
+						returnPath.push(selectedPath[i]);
+					}
+					
+					var multiplier = 1 / 420 * width;
+					
+					
+					for (var i = 0 ; i < returnPath.length; i++){
+						if(returnPath[i] == "M" || returnPath[i] == "z" || returnPath[i] == "c" || returnPath[i] == "s" || returnPath[i] == "l"|| returnPath[i] == "v"|| returnPath[i] == "h"){
+																					
+						} else {
+							returnPath[i] = 	returnPath[i] * multiplier;
+						}
+					}
+					
+					
+					
+					 return returnPath;
 
-
+	
 					
 					
-					
-					//var multiplier = 1 / 420 * width;
-					
-					//return "M" + ( x + (multiplier * 77) ) + "," + ( y + (multiplier * 249) ) + "v-" + ( multiplier * 14) + "h" + ( multiplier * 4) + "v-" + ( multiplier * 6) + "h" + ( multiplier * 4) + "v-" + ( multiplier * 18) + "h" + ( multiplier * 8) + "v-" + ( multiplier * 6) + "h" + ( multiplier * 4) + "v-" + ( multiplier * 6) + "h" + ( multiplier * 8) + "v-" + ( multiplier * 12) + "h" + ( multiplier * 8) + "v" + ( multiplier * 18) + "h" + ( multiplier * 4) + "v-" + ( multiplier * 12) + "h" + ( multiplier * 8) + "v-" + ( multiplier * 12) + "h" + ( multiplier * 8) + "v-" + ( multiplier * 12) + "h" + ( multiplier * 16) + "v-" + ( multiplier * 6) + "h" + ( multiplier * 12) + "v" + ( multiplier * 30) + "h" + ( multiplier * 4) + "v-" + ( multiplier * 18) + "h" + ( multiplier * 8) + "v-" + ( multiplier * 18) + "h" + ( multiplier * 14) + "v" + ( multiplier * 24) + "h" + ( multiplier * 4) + "v" + ( multiplier * 30) + "h" + ( multiplier * 4) + "v-" + ( multiplier * 18) + "h" + ( multiplier * 8) + "v-" + ( multiplier * 42) + "h" + ( multiplier * 14) + "v" + ( multiplier * 18) + "h" + ( multiplier * 14) + "v" + ( multiplier * 12) + "h" + ( multiplier * 8) + "v" + ( multiplier * 24) + "h" + ( multiplier * 4) + "v-" + ( multiplier * 42) + "h" + ( multiplier * 22) + "v" + ( multiplier * 24) + "h" + ( multiplier * 4) + "v-" + ( multiplier * 12) + "h" + ( multiplier * 22) + "v" + ( multiplier * 18) + "h" + ( multiplier * 4) + "v-" + ( multiplier * 6) + "h" + ( multiplier * 14) + "v" + ( multiplier * 18) + "h" + ( multiplier * 8) + "v" + ( multiplier * 18) + "h" + ( multiplier * 4) + "v-" + ( multiplier * 12) + "h" + ( multiplier * 14) + "v" + ( multiplier * 18) + "h" + ( multiplier * 4) + "v" + ( multiplier * 6) + "h" + ( multiplier * 4) + "v" + ( multiplier * 14) + "z";
 					
 				}
 				

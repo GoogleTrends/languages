@@ -1880,6 +1880,8 @@
                             newHeight = windowHieght;
                             newHeight -= $option.position().top;
                             newHeight -= logoHieght;
+							newHeight -= 16;
+							
 							
 							if($body.find('div.scrollbar').is(":visible") ){
 								newHeight -= $body.find('div.scrollbar').height();
